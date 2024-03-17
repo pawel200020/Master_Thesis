@@ -15,13 +15,20 @@ wybrane frameworki:
     Entity
         1.5 Apache iBATIS - mapping between sql and java /c#
         1.6 SolrJ
-    2. C#    
+    2. C#
+        //realtional    
         2.1 Entity framework
-        2.2 MyGeneration doodads
-        2.3 SolrNet
-        2.4 Apache iBATIS - mapping between sql
+        2.2 NHibernate
+        2.3 MyGeneration doodads**
+        //non sql
+        2.4 SolrNet
+        2.5 MongoDB.Bson
     3. Python
     ...
+    4. C++
+        4.1 EasyQtSql -sql 
+        4.2 libpqxx - postgres 
+        4.3 mongocxx - mongodb
 
 
 Technologia w jakiej powstanie własny framework:
