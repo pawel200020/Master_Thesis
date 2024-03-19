@@ -1,0 +1,163 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MTRANSLATE.LinqToSql/1.0.5": {
+        "type": "package",
+        "dependencies": {
+          "MTRANSLATE.LinqToSql.Common": "1.0.5",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/MTRANSLATE.LinqToSql.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/MTRANSLATE.LinqToSql.dll": {}
+        }
+      },
+      "MTRANSLATE.LinqToSql.Common/1.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/MTRANSLATE.LinqToSql.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/MTRANSLATE.LinqToSql.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
+      "sha512": "ORj7Zh81gC69TyvmcUm9tSzytcy8AVousi+IVRAI8nLieQjOFryRusSFh7+aLk16FN9pQNqJAiMd7BTKINK0kA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "MTRANSLATE.LinqToSql/1.0.5": {
+      "sha512": "K5YgcpxpyOcBPBuzSVGRSWxROFzBsiyDu5Ag54I3BE3iB6ISr4Cy8heAZP+Savby8QcKrffU2r79VxBdCns8CQ==",
+      "type": "package",
+      "path": "mtranslate.linqtosql/1.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/MTRANSLATE.LinqToSql.dll",
+        "mtranslate.linqtosql.1.0.5.nupkg.sha512",
+        "mtranslate.linqtosql.nuspec"
+      ]
+    },
+    "MTRANSLATE.LinqToSql.Common/1.0.5": {
+      "sha512": "IO3xPsyMupWl0dgPcWNA4UzAK37oE0/9ouKfjyoWx4Sc28jg+NwEdLSrN+BuLQwLtbeFiorRfN8OcYjr6GlLyQ==",
+      "type": "package",
+      "path": "mtranslate.linqtosql.common/1.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/MTRANSLATE.LinqToSql.Common.dll",
+        "mtranslate.linqtosql.common.1.0.5.nupkg.sha512",
+        "mtranslate.linqtosql.common.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "MTRANSLATE.LinqToSql >= 1.0.5"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\p1\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Code\\Test\\FrameworksPerformance\\LinqToSql\\LinqToSql.csproj",
+      "projectName": "LinqToSql",
+      "projectPath": "D:\\Code\\Test\\FrameworksPerformance\\LinqToSql\\LinqToSql.csproj",
+      "packagesPath": "C:\\Users\\p1\\.nuget\\packages\\",
+      "outputPath": "D:\\Code\\Test\\FrameworksPerformance\\LinqToSql\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\p1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "MTRANSLATE.LinqToSql": {
+            "target": "Package",
+            "version": "[1.0.5, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
