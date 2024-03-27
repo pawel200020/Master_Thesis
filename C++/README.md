@@ -2,9 +2,9 @@
 Solution prepared for testing performance of database frameworks for C++ language
 
 TODO:
-- [ ] EasyQtSql -sql 
+- [ ] EasyQtSql -sql server
   - https://github.com/kramolnic/EasyQtSql
-- [ ] SQLAPI++ - postgres 
-  - https://www.sqlapi.com/
+- [ ] SQLiteCpp - sqlite 
+  - https://github.com/SRombauts/SQLiteCpp
 - [ ] MongoDB C++ Driver
   - https://www.mongodb.com/docs/drivers/cxx/
