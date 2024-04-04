@@ -6,7 +6,35 @@ End
 Go
 
 USE FrameworkPerformanceMT
-Go
+GO
+
+IF OBJECT_ID('OrderDetailsInfoCollection') IS NOT NULL
+DROP XML SCHEMA COLLECTION ClientInfoCollection;
+GO
+CREATE XML SCHEMA COLLECTION OrderDetailsInfoCollection AS 
+'<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns="urn:OrderDetailsInfoCollection" 
+targetNamespace="urn:OrderDetailsInfoCollection" 
+elementFormDefault="qualified">
+  <xsd:element name="Products">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Product" minOccurs="1" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1" />
+              <xsd:element name="Price" type="xsd:string" minOccurs="1" maxOccurs="1" />
+              <xsd:element name="Quantity" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:integer" use="required"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>';
+GO
+
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_NAME='Clients') 
 BEGIN
 	CREATE TABLE Clients(
@@ -14,7 +42,7 @@ BEGIN
 		FirstName NVarChar (20) NOT NULL,
 		LastName NVarChar(20) NOT NULL,
 		PhoneNumber NVarChar(15),
-		Address XML NOT NULL,
+		Address NVarChar(100) NOT NULL,
 		Country NVarChar(20),
 		PRIMARY KEY (ClientId)
 	)
@@ -62,7 +90,7 @@ BEGIN
 		FirstName NVarChar (20) NOT NULL,
 		LastName NVarChar(20) NOT NULL,
 		PhoneNumber NVarChar(15),
-		Adress XML NOT NULL,
+		Address NVarChar(100) NOT NULL,
 		PositionId INT FOREIGN KEY (PositionId) REFERENCES dbo.Positions (PositionId),
 		PRIMARY KEY (EmployeeId)
 	)
@@ -76,7 +104,7 @@ BEGIN
 		ClientId INT NOT NULL FOREIGN KEY REFERENCES Clients(ClientId) ON DELETE CASCADE,
 		EmployeeId INT NOT NULL FOREIGN KEY REFERENCES Employees(EmployeeId),
 		OrderDate DateTime,
-		OrderDetails XML NOT NULL,
+		OrderDetails XML (ClientInfoCollection) NOT NULL,
 		TotalCost Decimal (18,2) NOT NULL,
 		PRIMARY KEY (OrderId)
 	)
