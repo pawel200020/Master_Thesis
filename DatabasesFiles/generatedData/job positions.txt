@@ -1,0 +1,105 @@
+CEO
+CTO
+Finance Director
+Seller
+Shop Owner
+Environmental scientist
+Epidemiologist
+Lawyer
+Economist
+Zoologist
+Human Resources Assistant
+Chef
+Construction Manager
+Judge
+Computer Systems Analyst
+Historian
+Reporter
+Photographer
+Desktop publisher
+Software Developer
+Occupational Therapist
+Marriage & Family Therapist
+Firefighter
+Security Guard
+Farmer
+Court Reporter
+Preschool Teacher
+Accountant
+Web Developer
+Truck Driver
+Patrol Officer
+Hairdresser
+Mason
+Customer Service Representative
+Referee
+Actuary
+Plumber
+Recreation & Fitness Worker
+Architect
+Database administrator
+Microbiologist
+Budget analyst
+Carpenter
+Marketing Manager
+Professional athlete
+Computer Programmer
+Anthropologist
+Telemarketer
+Designer
+Coach
+Actor
+Auto Mechanic
+Compliance Officer
+Medical Secretary
+Mathematician
+Statistician
+Logistician
+Receptionist
+School Psychologist
+Childcare worker
+HR Specialist
+Bus Driver
+Personal Care Aide
+Executive Assistant
+Automotive mechanic
+Paralegal
+Drafter
+Clinical Laboratory Technician
+Librarian
+Computer Hardware Engineer
+Civil Engineer
+Sports Coach
+Social Worker
+Radiologic Technologist
+Artist
+High School Teacher
+Landscaper & Groundskeeper
+Public Relations Specialist
+Electrician
+Janitor
+Systems Analyst
+Pharmacist
+Physical Therapist
+Surveyor
+Chemist
+Event Planner
+Registered Nurse
+Physician
+Dancer
+Art Director
+Respiratory Therapist
+Cashier
+Educator
+Computer Systems Administrator
+Musician
+Market Research Analyst
+Psychologist
+Painter
+Cost Estimator
+Food Scientist
+Substance Abuse Counselor
+Physicist
+Writer
+Urban Planner
+Medical Assistant

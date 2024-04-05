@@ -1,0 +1,2 @@
+generator do danych:
+https://www.randomlists.com/drinks
