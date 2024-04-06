@@ -1,3 +1,6 @@
 generator do danych:
 https://www.randomlists.com/drinks
 https://drive.google.com/drive/folders/1enI4hKAOWZDQhe9i7V1M-EtlbVYmKyEX?usp=sharing
+
+create mongoDb docker volume
+docker run -d --name mongoDB -v mongoDB:/data/db -v mongoDbConfig:/data/configdb -p 27017:27017 mongodb/mongodb-community-server:latest
