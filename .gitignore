@@ -400,3 +400,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/C#/FrameworksPerformance/.vs/FrameworksPerformance/v17/.suo
