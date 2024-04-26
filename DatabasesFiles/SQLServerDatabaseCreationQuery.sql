@@ -105,6 +105,7 @@ BEGIN
 		OrderDate DateTime,
 		OrderDetails XML (OrdersInfoCollection) NOT NULL,
 		TotalCost Decimal (18,2) NOT NULL,
+		StoreId INT  FOREIGN KEY (StoreId) REFERENCES dbo.Stores (StoreId) ON DELETE CASCADE,
 		PRIMARY KEY (OrderId)
 	)
 END

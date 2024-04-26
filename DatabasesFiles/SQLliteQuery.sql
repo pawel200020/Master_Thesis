@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS Orders(
 		OrderDate TEXT,
 		OrderDetails TEXT NOT NULL,
 		TotalCost NUMERIC NOT NULL,
+		StoreId INTEGER NOT NULL,
             FOREIGN KEY (ClientId) REFERENCES Clients(ClientId) ON DELETE CASCADE,
-            FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId)
+            FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId),
+			FOREIGN KEY (StoreId) REFERENCES Stores(StoreId) ON DELETE CASCADE,
 	)
