@@ -17,7 +17,11 @@ public partial class Order
 
     public decimal TotalCost { get; set; }
 
+    public int StoreId { get; set; }
+
     public virtual Client Client { get; set; } = null!;
 
     public virtual Employee Employee { get; set; } = null!;
+
+    public virtual Store Store { get; set; } = null!;
 }
