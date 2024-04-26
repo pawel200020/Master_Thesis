@@ -14,7 +14,7 @@ W ramach pracy, wykonam przegląd powszechnie stosowanych frameworków w języka
 ### Własny framework zaimplementuję w języku 
 - [ ] C#
 ### Link do Overleaf z pracą:
-- [ ] TODO
+  - [Click](https://www.overleaf.com/project/6622366cf6afcb0be84f1ec8)
 ### Dashboard:
 - https://trello.com/b/TmpJ7COL/master-thesis
 
