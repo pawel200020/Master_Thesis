@@ -9,4 +9,5 @@ Console.WriteLine("Hello, World!");
 using var context = new FrameworkPerformanceMtContext();
 
 var test = new SingleTableTests(context);
-test.Run();
+var result = await test.SearchSingleRecord(10);
+Console.WriteLine(result);
