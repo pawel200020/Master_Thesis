@@ -2,6 +2,7 @@
 
 namespace Common
 {
+    [Serializable]
     public class TestResult
     {
         public string Activity { get; }
@@ -13,7 +14,7 @@ namespace Common
                 if (_avgTimeElapsedCached is not null)
                     return _avgTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _avgTimeElapsedCached = _attemptsList.Average();
                     return _avgTimeElapsedCached.Value;
@@ -29,7 +30,7 @@ namespace Common
                 if (_medianTimeElapsedCached is not null)
                     return _medianTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _medianTimeElapsedCached = _attemptsList.Median();
                     return _medianTimeElapsedCached.Value;
@@ -45,7 +46,7 @@ namespace Common
                 if (_standardDeviationTimeElapsedCached is not null)
                     return _standardDeviationTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _standardDeviationTimeElapsedCached = _attemptsList.StandardDeviation();
                     return _standardDeviationTimeElapsedCached.Value;
@@ -61,7 +62,7 @@ namespace Common
                 if (_maxTimeElapsedCached is not null)
                     return _maxTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _maxTimeElapsedCached = _attemptsList.Maximum();
                     return _maxTimeElapsedCached.Value;
@@ -77,7 +78,7 @@ namespace Common
                 if (_minTimeElapsedCached is not null)
                     return _minTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _minTimeElapsedCached = _attemptsList.Minimum();
                     return _minTimeElapsedCached.Value;
@@ -93,7 +94,7 @@ namespace Common
                 if (_varianceTimeElapsedCached is not null)
                     return _varianceTimeElapsedCached.Value;
 
-                if (_addedSamples + 1 == _samples)
+                if (_addedSamples == _samples)
                 {
                     _varianceTimeElapsedCached = _attemptsList.Variance();
                     return _varianceTimeElapsedCached.Value;
