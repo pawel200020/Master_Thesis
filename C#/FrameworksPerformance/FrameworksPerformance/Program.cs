@@ -3,9 +3,11 @@ using Common.Menu;
 using Common.Utilites;
 using EntityFramework;
 
-Console.WriteLine("Welcome to Database Performance Tester - C#");
+var jsonManager = new JsonManager();
 var efMenu = new RelationalFrameworkMenu("Entity Framework",
-    new RelationalFrameworkTestsFacade(new EntityFrameworkManagerFactory().Create(), new JsonManager()));
+    new RelationalFrameworkTestsFacade(new EntityFrameworkManagerFactory().Create(), jsonManager));
+
+Console.WriteLine("Welcome to Database Performance Tester - C#");
 while (true)
 {
     Console.WriteLine("Select framework which you want to test: (press 1-3)");

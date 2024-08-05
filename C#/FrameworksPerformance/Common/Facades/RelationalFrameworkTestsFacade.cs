@@ -24,10 +24,9 @@ namespace Common.Facades
             testsResults.Add(_manager.EditRecords(samplesQuantity));
             testsResults.Add(_manager.DeleteRecords(samplesQuantity));
             testsResults.Add(_manager.SearchTwoRelatedTables(samplesQuantity));
-            testsResults.Add(_manager.SearchFourRelatedTables(samplesQuantity));
+            testsResults.Add(_manager.SearchThreeRelatedTables(samplesQuantity));
             testsResults.Add(_manager.SearchRecordsWhichDoesNotHaveConnection(samplesQuantity));
             testsResults.Add(_manager.SearchWithSubQuery(samplesQuantity));
-            testsResults.Add(_manager.SearchWithSubQueryWithJoin(samplesQuantity));
 
             _jsonManager.SaveTestResultAsFile(fileName,testsResults);
             return _jsonManager.ConvertToJson(testsResults);
@@ -47,12 +46,10 @@ namespace Common.Facades
 
         public string SearchTwoRelatedTables(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchTwoRelatedTables(samplesQuantity));
 
-        public string SearchFourRelatedTables(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchFourRelatedTables(samplesQuantity));
+        public string SearchFourRelatedTables(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchThreeRelatedTables(samplesQuantity));
 
         public string SearchRecordsWhichDoesNotHaveConnection(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchRecordsWhichDoesNotHaveConnection(samplesQuantity));
 
         public string SearchWithSubQuery(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchWithSubQuery(samplesQuantity));
-
-        public string SearchWithSubQueryWithJoin(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchWithSubQueryWithJoin(samplesQuantity));
     }
 }

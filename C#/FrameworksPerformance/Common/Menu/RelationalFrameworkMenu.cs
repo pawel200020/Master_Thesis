@@ -31,7 +31,6 @@ H - Searching in two connected tables
 I - Searching in four connected tables
 J - Searching for records which does not have connection
 K - Searching with subquery
-L - searching wthi subquery which contains tables join
 
 X - Main menu
 ";
@@ -49,7 +48,6 @@ X - Main menu
             ConsoleKey.I => _frameworkTestsFacade.SearchFourRelatedTables(samples),
             ConsoleKey.J => _frameworkTestsFacade.SearchRecordsWhichDoesNotHaveConnection(samples),
             ConsoleKey.K => _frameworkTestsFacade.SearchWithSubQuery(samples),
-            ConsoleKey.L => _frameworkTestsFacade.SearchWithSubQueryWithJoin(samples),
             _ => "Wrong Command"
         };
 

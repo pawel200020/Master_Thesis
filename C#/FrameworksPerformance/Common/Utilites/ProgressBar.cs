@@ -15,8 +15,9 @@ public class ProgressBar : IDisposable, IProgress<double>
     private bool disposed = false;
     private int animationIndex = 0;
 
-    public ProgressBar()
+    public ProgressBar(string activityName = null)
     {
+        Console.WriteLine(activityName);
         timer = new Timer(TimerHandler);
 
         // A progress bar is only for temporary display in a console window.

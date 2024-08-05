@@ -12,6 +12,5 @@ namespace Common.Facades
         string SearchFourRelatedTables(int samplesQuantity);
         string SearchRecordsWhichDoesNotHaveConnection(int samplesQuantity);
         string SearchWithSubQuery(int samplesQuantity);
-        string SearchWithSubQueryWithJoin(int samplesQuantity);
     }
 }
