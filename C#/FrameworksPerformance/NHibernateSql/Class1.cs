@@ -1,4 +1,4 @@
-﻿namespace NHibernate
+﻿namespace NHibernateSql
 {
     public class Class1
     {
