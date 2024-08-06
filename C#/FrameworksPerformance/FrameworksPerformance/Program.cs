@@ -2,16 +2,19 @@
 using Common.Menu;
 using Common.Utilites;
 using EntityFramework;
+using EntityFrameworkSqlite;
 
 var jsonManager = new JsonManager();
-var efMenu = new RelationalFrameworkMenu("Entity Framework",
+var efMenu = new RelationalFrameworkMenu("Entity Framework - SQL Server",
     new RelationalFrameworkTestsFacade(new EntityFrameworkManagerFactory().Create(), jsonManager));
+var efSqliteMenu = new RelationalFrameworkMenu("Entity Framework - SQLite",
+    new RelationalFrameworkTestsFacade(new EntityFrameworkSqliteManagerFactory().Create(),jsonManager));
 
 Console.WriteLine("Welcome to Database Performance Tester - C#");
 while (true)
 {
     Console.WriteLine("Select framework which you want to test: (press 1-3)");
-    Console.WriteLine("1.Entity Framework\n2.NHibernate\n3.SolrNet");
+    Console.WriteLine("1.Entity Framework - SQL Server\n2.Entity Framework - SQLite\n3.NHibernate\n4.SolrNet");
     Console.WriteLine("X - Close program\n");
     var input = Console.ReadKey();
     switch (input.Key)
@@ -23,9 +26,14 @@ while (true)
         }
         case ConsoleKey.D2:
         {
+            efSqliteMenu.Display();
             break;
         }
         case ConsoleKey.D3:
+        {
+            break;
+        }
+        case ConsoleKey.D4:
         {
             break;
         }

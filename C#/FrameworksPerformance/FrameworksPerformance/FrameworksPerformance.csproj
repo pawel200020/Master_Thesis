@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntityFramework\EntityFramework.csproj" />
+    <ProjectReference Include="..\EntityFrameworkSqlite\EntityFrameworkSqlite.csproj" />
   </ItemGroup>
 
 </Project>
