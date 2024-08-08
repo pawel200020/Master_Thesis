@@ -3,12 +3,15 @@ using Common.Menu;
 using Common.Utilites;
 using EntityFramework;
 using EntityFrameworkSqlite;
+using NHibernateSql;
 
 var jsonManager = new JsonManager();
 var efMenu = new RelationalFrameworkMenu("Entity Framework - SQL Server",
     new RelationalFrameworkTestsFacade(new EntityFrameworkManagerFactory().Create(), jsonManager));
 var efSqliteMenu = new RelationalFrameworkMenu("Entity Framework - SQLite",
     new RelationalFrameworkTestsFacade(new EntityFrameworkSqliteManagerFactory().Create(),jsonManager));
+var nHibernateMenu = new RelationalFrameworkMenu("NHibernate - SQL Server",
+    new RelationalFrameworkTestsFacade(new NHibernateManagerFactory().Create(), jsonManager));
 
 Console.WriteLine("Welcome to Database Performance Tester - C#");
 while (true)
@@ -31,6 +34,7 @@ while (true)
         }
         case ConsoleKey.D3:
         {
+            nHibernateMenu.Display();
             break;
         }
         case ConsoleKey.D4:

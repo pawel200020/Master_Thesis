@@ -302,15 +302,6 @@ namespace EntityFrameworkSqlite
             return testResult;
         }
 
-        private enum TableWithNull
-        {
-            ClientPhone = 1,
-            ClientCountry = 2,
-            EmployeesPhone = 3,
-            Orders = 4,
-            Products = 5,
-        }
-
         private IEnumerable<string> ReadData(string path)
         {
             var result = new List<string>();

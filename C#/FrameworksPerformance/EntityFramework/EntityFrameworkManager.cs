@@ -309,16 +309,6 @@ namespace EntityFramework
             return testResult;
         }
 
-        private enum TableWithNull
-        {
-            ClientPhone = 1,
-            ClientCountry = 2,
-            EmployeesPhone = 3,
-            EmployeesPositionId = 4,
-            Orders = 5,
-            Products = 6,
-        }
-
         private IEnumerable<string> ReadData(string path)
         {
             var result = new List<string>();
