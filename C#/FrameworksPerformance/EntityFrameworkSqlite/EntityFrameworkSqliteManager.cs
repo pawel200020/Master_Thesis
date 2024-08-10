@@ -3,6 +3,7 @@ using Common;
 using Common.Managers;
 using Common.Utilites;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace EntityFrameworkSqlite
 {
@@ -51,7 +52,7 @@ namespace EntityFrameworkSqlite
 
                     sw.Start();
 
-                    var _ = _context.Employees.Where(x=> x.PositionId == positionId).ToArray();
+                    var _ = _context.Employees.Where(x => x.PositionId == positionId).ToArray();
 
                     sw.Stop();
 
@@ -219,11 +220,11 @@ namespace EntityFrameworkSqlite
             return testResult;
         }
 
-        public TestResult SearchThreeRelatedTables(int samplesQuantity)
+        public TestResult SearchFourRelatedTables(int samplesQuantity)
         {
             var positionsCount = _context.Positions.Count() - 1;
             var storesCount = _context.Stores.Count() - 1;
-            var testResult = new TestResult(samplesQuantity, nameof(SearchThreeRelatedTables));
+            var testResult = new TestResult(samplesQuantity, nameof(SearchFourRelatedTables));
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
@@ -302,6 +303,48 @@ namespace EntityFrameworkSqlite
             return testResult;
         }
 
+        public TestResult RemoveRelatedRecords(int samplesQuantity)
+        {
+            var testResult = new TestResult(samplesQuantity, nameof(RemoveRelatedRecords));
+            var clientsCount = _context.Clients.Count() - 1;
+            var employeesCount = _context.Employees.Count() - 1;
+
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var client = _context.Clients.Find(_random.Next(clientsCount) + 1);
+                    var employee = _context.Employees.Find(_random.Next(employeesCount) + 1);
+                    var addedStore = _context.Stores.Add(new Store()
+                    {
+                        Address = "Norymberska 1 30-412 Krakow",
+                        Country = "Poland",
+                        Orders = new List<Order>()
+                            {
+                                new()
+                                {
+                                    Client = client!,
+                                    Employee = employee!,
+                                    OrderDate = DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                                    OrderDetails = OrderXml,
+                                    TotalCost = 120
+                                }
+                            }
+                    });
+                    _context.SaveChanges();
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    _context.Stores.Remove(addedStore.Entity);
+                    _context.SaveChanges();
+                    sw.Stop();
+                    progress.Report((double)i / samplesQuantity);
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+
+                }
+            }
+            return testResult;
+        }
+
         private IEnumerable<string> ReadData(string path)
         {
             var result = new List<string>();
@@ -350,5 +393,19 @@ namespace EntityFrameworkSqlite
             _context.RemoveRange(itemsToRemove);
             _context.SaveChanges();
         }
+        private const string OrderXml = @"<Order xmlns=""urn:OrdersInfoNamespace"">
+  <Product id=""0"">
+    <Name>rock</Name>
+    <Quantity>669</Quantity>
+  </Product>
+  <Product id=""1"">
+    <Name>toilet</Name>
+    <Quantity>837</Quantity>
+  </Product>
+  <Product id=""2"">
+    <Name>newspaper</Name>
+    <Quantity>38</Quantity>
+  </Product>
+</Order>";
     }
 }

@@ -226,11 +226,11 @@ namespace EntityFramework
             return testResult;
         }
 
-        public TestResult SearchThreeRelatedTables(int samplesQuantity)
+        public TestResult SearchFourRelatedTables(int samplesQuantity)
         {
             var positionsCount = _context.Positions.Count() - 1;
             var storesCount = _context.Stores.Count() - 1;
-            var testResult = new TestResult(samplesQuantity, nameof(SearchThreeRelatedTables));
+            var testResult = new TestResult(samplesQuantity, nameof(SearchFourRelatedTables));
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
@@ -351,11 +351,68 @@ namespace EntityFramework
             return (minId, maxId);
         }
 
+        public TestResult RemoveRelatedRecords(int samplesQuantity)
+        {
+            var testResult = new TestResult(samplesQuantity, nameof(RemoveRelatedRecords));
+            var clientsCount = _context.Clients.Count() - 1;
+            var employeesCount = _context.Employees.Count() - 1;
+
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var client = _context.Clients.Find(_random.Next(clientsCount) + 1);
+                    var employee = _context.Employees.Find(_random.Next(employeesCount) + 1);
+                    var addedStore = _context.Stores.Add(new Store()
+                    {
+                        Address = "Norymberska 1 30-412 Krakow",
+                        Country = "Poland",
+                        Orders = new List<Order>()
+                        {
+                            new()
+                            {
+                                Client = client!,
+                                Employee = employee!,
+                                OrderDate = DateTime.Now,
+                                OrderDetails = OrderXml,
+                                TotalCost = 120
+                            }
+                        }
+                    });
+                    _context.SaveChanges();
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    _context.Stores.Remove(addedStore.Entity);
+                    _context.SaveChanges();
+                    sw.Stop();
+                    progress.Report((double)i / samplesQuantity);
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+
+                }
+            }
+            return testResult;
+        }
+
         private void RemoveRecordsSilent()
         {
             var itemsToRemove = _context.Products.Where(x => x.ProductDescription == ProductDescription);
             _context.RemoveRange(itemsToRemove);
             _context.SaveChanges();
         }
+
+        private const string OrderXml = @"<Order xmlns=""urn:OrdersInfoNamespace"">
+  <Product id=""0"">
+    <Name>rock</Name>
+    <Quantity>669</Quantity>
+  </Product>
+  <Product id=""1"">
+    <Name>toilet</Name>
+    <Quantity>837</Quantity>
+  </Product>
+  <Product id=""2"">
+    <Name>newspaper</Name>
+    <Quantity>38</Quantity>
+  </Product>
+</Order>";
     }
 }
