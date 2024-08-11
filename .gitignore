@@ -405,3 +405,4 @@ C#/FrameworksPerformance/.vs/FrameworksPerformance/DesignTimeBuild/.dtbcache.v2
 C#/FrameworksPerformance/.vs/FrameworksPerformance/v17/.futdcache.v2
 C#/FrameworksPerformance/.vs/ProjectEvaluation/frameworksperformance.metadata.v7.bin
 C#/FrameworksPerformance/.vs/ProjectEvaluation/frameworksperformance.projects.v7.bin
+*.exe

@@ -1,12 +1,55 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿using Common.Facades;
+using Common.Menu;
+using Common.Utilites;
 using EntityFramework;
-using EntityFramework.Models;
+using EntityFrameworkSqlite;
+using NHibernateSql;
 
-Console.WriteLine("Hello, World!");
+var jsonManager = new JsonManager();
+var efMenu = new RelationalFrameworkMenu("Entity Framework - SQL Server",
+    new RelationalFrameworkTestsFacade(new EntityFrameworkManagerFactory().Create(), jsonManager));
+var efSqliteMenu = new RelationalFrameworkMenu("Entity Framework - SQLite",
+    new RelationalFrameworkTestsFacade(new EntityFrameworkSqliteManagerFactory().Create(),jsonManager));
+var nHibernateMenu = new RelationalFrameworkMenu("NHibernate - SQL Server",
+    new RelationalFrameworkTestsFacade(new NHibernateManagerFactory().Create(), jsonManager));
 
+Console.WriteLine("Welcome to Database Performance Tester - C#");
+while (true)
+{
+    Console.WriteLine("Select framework which you want to test: (press 1-3)");
+    Console.WriteLine("1.Entity Framework - SQL Server\n2.Entity Framework - SQLite\n3.NHibernate\n4.SolrNet");
+    Console.WriteLine("X - Close program\n");
+    var input = Console.ReadKey();
+    switch (input.Key)
+    {
+        case ConsoleKey.D1:
+        {
+            efMenu.Display();
+            break;
+        }
+        case ConsoleKey.D2:
+        {
+            efSqliteMenu.Display();
+            break;
+        }
+        case ConsoleKey.D3:
+        {
+            nHibernateMenu.Display();
+            break;
+        }
+        case ConsoleKey.D4:
+        {
+            break;
+        }
+        case ConsoleKey.X:
+        {
+            return 0;
+        }
+        default:
+        {
+            Console.WriteLine("Wrong Command");
+            break;
+        }
+    }
 
-using var context = new FrameworkPerformanceMtContext();
-
-var test = new SingleTableTests(context);
-test.Run();
+}
