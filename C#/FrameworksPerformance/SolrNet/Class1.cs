@@ -1,7 +1,6 @@
-﻿namespace SolrNet
-{
-    public class Class1
-    {
+﻿namespace SolrNet;
 
-    }
+public class Class1
+{
+
 }

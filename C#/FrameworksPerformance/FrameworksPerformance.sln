@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrameworksPerformance", "Fr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{4B0EE065-85A3-457E-B183-E0FC8CE5CAC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolrNet", "SolrNet\SolrNet.csproj", "{FA103397-B81D-43C1-A9EB-081C4139E823}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{B33BAC5C-7F38-40A0-B2AB-2C9DD4454082}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkSqlite", "EntityFrameworkSqlite\EntityFrameworkSqlite.csproj", "{1465A48B-1BC0-4C2F-8490-92BB3E105576}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernateSql", "NHibernateSql\NHibernateSql.csproj", "{15996594-6D7C-4E02-8E22-8F455DEAD7B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateModels", "NHibernateModels\NHibernateModels.csproj", "{5B6A9761-19A9-4CA4-B9AB-38A09A47C8DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernateModels", "NHibernateModels\NHibernateModels.csproj", "{5B6A9761-19A9-4CA4-B9AB-38A09A47C8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolrEngine", "SolrEngine\SolrEngine.csproj", "{F179C29A-7378-4E03-B975-561E0DED7C65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{4B0EE065-85A3-457E-B183-E0FC8CE5CAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B0EE065-85A3-457E-B183-E0FC8CE5CAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B0EE065-85A3-457E-B183-E0FC8CE5CAC9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA103397-B81D-43C1-A9EB-081C4139E823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA103397-B81D-43C1-A9EB-081C4139E823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA103397-B81D-43C1-A9EB-081C4139E823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA103397-B81D-43C1-A9EB-081C4139E823}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B33BAC5C-7F38-40A0-B2AB-2C9DD4454082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B33BAC5C-7F38-40A0-B2AB-2C9DD4454082}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33BAC5C-7F38-40A0-B2AB-2C9DD4454082}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{5B6A9761-19A9-4CA4-B9AB-38A09A47C8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B6A9761-19A9-4CA4-B9AB-38A09A47C8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B6A9761-19A9-4CA4-B9AB-38A09A47C8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F179C29A-7378-4E03-B975-561E0DED7C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F179C29A-7378-4E03-B975-561E0DED7C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F179C29A-7378-4E03-B975-561E0DED7C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F179C29A-7378-4E03-B975-561E0DED7C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

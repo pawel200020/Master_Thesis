@@ -55,27 +55,139 @@ def convert_date(dateRaw):
 def findAge(date):
     return datetime.datetime.now().year - date.year
 
-url =   "http://localhost:8983/solr/Clients/update/json/docs"
-file2 = open("random_products_with_descriptions.txt")
-products = [line[:-2:].split(" - ") for line in file2]
-file2.close()
-id = 1
-file1 = open("processed_random_short_profiles.txt", "r")
-for line in file1:
-    splitted = line[:-2].split(",")
-    date = convert_date(splitted[2])
-    client = Client(id, splitted[0],splitted[1],findAge(date),random.randint(0,10000),[products[random.randint(0,10000)][0],products[random.randint(0,10000)]][0],random.randint(100000,1000000)/100,date, splitted[3])
-    response = requests.post(url, json.dumps(client, default=Client.to_dict))
-    print(response.json())
-    id= id+1
-file1.close()
-id =1
-file3 = open("categories.txt")
-categories = [line[:-1:] for line in file3]
-file3.close()
-url = "http://localhost:8983/solr/Products/update/json/docs"
-for product in products:
-    product = Product(id,product[0],product[1],random.randint(100,100000)/100,categories[random.randint(0,344)])
-    response = requests.post(url, json.dumps(product, default=Product.to_dict))
-    print(response.json())
-    id=id+1
+
+def createFields():
+    clientsUrl="http://localhost:8983/solr/Clients/schema"
+    productsUrl="http://localhost:8983/solr/Products/schema"
+    clientsJsons = [{
+        "add-field":{
+            "name":"age",
+            "type": "pint",
+            "indexed": True,
+            "stored": True },
+    },{
+        "add-field":{
+            "name":"birth_date",
+            "type": "pdate",
+            "indexed": True,
+            "stored": True,
+            "docValues": True }},{
+     "add-field":{
+            "name":"description",
+            "type": "text_en",
+            "indexed": True,
+            "stored": True},},{
+        "add-field":{
+            "name":"favourite_product",
+            "type": "pint",
+            "indexed": True,
+            "stored": True},},{
+        "add-field":{
+            "name":"name",
+            "type": "string",
+            "indexed": True,
+            "stored": True,
+            "docValues": True },},{
+        "add-field":{
+            "name":"last_name",
+            "type": "string",
+            "indexed": True,
+            "stored": True,
+            "docValues": True },},{
+        "add-field":{
+            "name":"personal_data",
+            "type": "string",
+            "indexed": True,
+            "stored": True,
+            "multiValued": True },},{
+        "add-field":{
+            "name":"recent_bought_products",
+            "type": "string",
+            "indexed": True,
+            "stored": True,
+            "multiValued": True },},{
+        "add-field":{
+            "name":"salary",
+            "type": "pdouble",
+            "indexed": True,
+            "stored": True
+            }},{
+        "add-copy-field":{
+            "source":"age",
+            "dest": ["personal_data"]},},{
+        "add-copy-field":{
+            "source":"name",
+            "dest": ["personal_data"]},},{
+        "add-copy-field":{
+            "source":"last_name",
+           "dest": ["personal_data"]},},{
+        "add-copy-field":{
+            "source":"salary",
+            "dest": ["personal_data"]}
+    }]
+    
+    productsJsons = [{
+        "add-field":{
+            "name":"name",
+            "type": "string",
+            "indexed": True,
+            "stored": True ,
+            "docValues": True },},{
+        "add-field":{
+            "name":"description",
+            "type": "text_en",
+            "indexed": True,
+            "stored": True},},{
+        "add-field":{
+            "name":"price",
+            "type": "pdouble",
+            "indexed": True,
+            "stored": True},},{
+        "add-field":{
+            "name":"category",
+            "type": "text_en",
+            "indexed": True,
+            "stored": True},
+    }]
+    for i in clientsJsons:
+
+        response = requests.post(clientsUrl,json = i)
+        print(f"{response.json()} Clients fields creation")
+        if response.status_code != 200:
+            return False
+    for i in productsJsons:
+        response = requests.post(productsUrl,json = i)
+        print(f"{response.json()} Products fields creation")
+        if response.status_code != 200:
+            return False
+    return True
+    
+def prepareSolr():
+    if(createFields() == False):
+        return
+    url =   "http://localhost:8983/solr/Clients/update/json/docs"
+    file2 = open("random_products_with_descriptions.txt")
+    products = [line[:-2:].split(" - ") for line in file2]
+    file2.close()
+    id = 1
+    file1 = open("processed_random_short_profiles.txt", "r")
+    for line in file1:
+        splitted = line[:-2].split(",")
+        date = convert_date(splitted[2])
+        client = Client(id, splitted[0],splitted[1],findAge(date),random.randint(0,10000),[products[random.randint(0,10000)][0],products[random.randint(0,10000)]][0],random.randint(100000,1000000)/100,date, splitted[3])
+        response = requests.post(url, json.dumps(client, default=Client.to_dict))
+        print(f"{response.json()} {id}")
+        id= id+1
+    file1.close()
+    id =1
+    file3 = open("categories.txt")
+    categories = [line[:-1:] for line in file3]
+    file3.close()
+    url = "http://localhost:8983/solr/Products/update/json/docs"
+    for product in products:
+        product = Product(id,product[0],product[1],random.randint(100,100000)/100,categories[random.randint(0,344)])
+        response = requests.post(url, json.dumps(product, default=Product.to_dict))
+        print(f"{response.json()} {id}")
+        id=id+1
+
+prepareSolr()
