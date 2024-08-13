@@ -18,6 +18,7 @@
     <ProjectReference Include="..\EntityFramework\EntityFramework.csproj" />
     <ProjectReference Include="..\EntityFrameworkSqlite\EntityFrameworkSqlite.csproj" />
     <ProjectReference Include="..\NHibernateSql\NHibernateSql.csproj" />
+    <ProjectReference Include="..\SolrEngine\SolrEngine.csproj" />
   </ItemGroup>
 
 </Project>

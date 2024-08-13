@@ -4,6 +4,7 @@ using Common.Utilites;
 using EntityFramework;
 using EntityFrameworkSqlite;
 using NHibernateSql;
+using SolrEngine;
 
 var jsonManager = new JsonManager();
 var efMenu = new RelationalFrameworkMenu("Entity Framework - SQL Server",
@@ -12,6 +13,8 @@ var efSqliteMenu = new RelationalFrameworkMenu("Entity Framework - SQLite",
     new RelationalFrameworkTestsFacade(new EntityFrameworkSqliteManagerFactory().Create(),jsonManager));
 var nHibernateMenu = new RelationalFrameworkMenu("NHibernate - SQL Server",
     new RelationalFrameworkTestsFacade(new NHibernateManagerFactory().Create(), jsonManager));
+
+var solrMenu = new FrameworkMenu("Solr", new FrameworkTestFacade(new SolrManager(), jsonManager));
 
 Console.WriteLine("Welcome to Database Performance Tester - C#");
 while (true)
@@ -39,6 +42,7 @@ while (true)
         }
         case ConsoleKey.D4:
         {
+            solrMenu.Display();
             break;
         }
         case ConsoleKey.X:

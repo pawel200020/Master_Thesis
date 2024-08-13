@@ -150,7 +150,6 @@ def createFields():
             "stored": True},
     }]
     for i in clientsJsons:
-
         response = requests.post(clientsUrl,json = i)
         print(f"{response.json()} Clients fields creation")
         if response.status_code != 200:
@@ -190,4 +189,26 @@ def prepareSolr():
         print(f"{response.json()} {id}")
         id=id+1
 
+def addNonStandardField(filedName,id,value):
+    url =   "http://localhost:8983/solr/Clients/update/"
+    json = [{
+        "id":f"{id}",
+        f"{filedName}": {"set": value}
+    }]
+    response = requests.post(url, json= json)
+    print(f"{response.json()} {id}")
+    return
+
+def addNonStandardFields():
+    for i in range(800):
+        id = random.randint(1,1000)
+        field = random.randint(1,3)
+        if field == 1:
+            addNonStandardField("has_children_b",id,i%2==0)
+        elif field ==2:
+            addNonStandardField("how_many_cats_i",id,random.randint(1,20))
+        else:
+            addNonStandardField("has_partner_b",id,i%2==0)
+
 prepareSolr()
+addNonStandardFields()
