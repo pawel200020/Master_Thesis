@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Configuration;
+using System.Diagnostics;
 using Common;
 using Common.Managers;
 using Common.Utilites;
@@ -14,7 +15,7 @@ namespace SolrEngine
     public class SolrManager : IFrameworkManager
     {
         private bool _initialized;
-        private const string url = "http://localhost:8983/solr";
+        private static string url = ConfigurationManager.AppSettings.Get("SolrUrl")!;
         private readonly ISolrOperations<Product> _solrProducts;
         private readonly ISolrOperations<Client> _solrClients;
         private readonly Random _random = new();
@@ -64,7 +65,7 @@ namespace SolrEngine
 
         public TestResult SetOfDataSearch(int samplesQuantity)
         {
-            var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
+            var testResult = new TestResult(samplesQuantity, nameof(SetOfDataSearch));
             var names = ReadData("Files/first_words.txt").Distinct();
             var namesQuantity = names.Count();
             using (var progress = new ProgressBar())
@@ -85,7 +86,7 @@ namespace SolrEngine
 
         public TestResult SetOfDataWithIsNullSearch(int samplesQuantity)
         {
-            var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
+            var testResult = new TestResult(samplesQuantity, nameof(SetOfDataWithIsNullSearch));
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
@@ -108,17 +109,91 @@ namespace SolrEngine
 
         public TestResult AddRecords(int samplesQuantity)
         {
-            throw new NotImplementedException();
+            var testResult = new TestResult(samplesQuantity, nameof(AddRecords));
+            var id = (int)CountRows(ProductSolrFields[nameof(Product.Id)], _solrProducts) + 1;
+            var categories = ReadData("Files/categories.txt");
+            List<string> idsToRemove = new();
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var category = categories.ElementAt(_random.Next(344));
+                    var price = (double)_random.Next(9999999) / 100;
+                    var sw = new Stopwatch();
+                    sw.Start();
+                    _solrProducts.Add(new Product()
+                    {
+                        Category = category,
+                        Description = "added by test",
+                        Id = id,
+                        Name = $"Example product {i}",
+                        Price = price,
+                    });
+                    sw.Stop();
+                    idsToRemove.Add(id.ToString());
+                    id++;
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+                    progress.Report((double)i / samplesQuantity);
+                }
+            }
+            _solrProducts.Commit();
+            _solrProducts.Delete(idsToRemove);
+            _solrProducts.Commit();
+            return testResult;
         }
 
         public TestResult EditRecords(int samplesQuantity)
         {
-            throw new NotImplementedException();
+            var addedIds = AddProducts(samplesQuantity);
+            var testResult = new TestResult(samplesQuantity, nameof(EditRecords));
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var firstIndex = int.Parse(addedIds.ElementAt(0));
+                    var idToEdit = _random.Next(firstIndex, firstIndex + addedIds.Count());
+                    var sw = new Stopwatch();
+                    sw.Start();
+                    _solrProducts.AtomicUpdate(idToEdit.ToString(),
+                        new[]
+                        {
+                            new AtomicUpdateSpec(ProductSolrFields[nameof(Product.Description)], AtomicUpdateType.Set,
+                                $"Edited value set for this by iteration {i}")
+                        });
+                    sw.Stop();
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+                    progress.Report((double)i / samplesQuantity);
+                }
+
+            }
+            _solrProducts.Commit();
+            _solrProducts.Delete(addedIds);
+            _solrProducts.Commit();
+            return testResult;
         }
 
         public TestResult DeleteRecords(int samplesQuantity)
         {
-            throw new NotImplementedException();
+            var addedIds = AddProducts(samplesQuantity);
+            var testResult = new TestResult(samplesQuantity, nameof(DeleteRecords));
+            int progressAsInt = 0;
+            using (var progress = new ProgressBar())
+            {
+                foreach (var id in addedIds)
+                {
+                    var sw = new Stopwatch();
+                    sw.Start();
+                    _solrProducts.Delete(id);
+                    _solrProducts.Commit();
+                    sw.Stop();
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+                    progress.Report((double)progressAsInt / samplesQuantity);
+                    progressAsInt++;
+                }
+
+            }
+            _solrProducts.Commit();
+            return testResult;
         }
 
 
@@ -174,6 +249,36 @@ namespace SolrEngine
             ClientSolrFields[nameof(Client.HasPartner)],
             ClientSolrFields[nameof(Client.HowManyCats)],
         };
+
+        private IEnumerable<string> AddProducts(int samplesQuantity)
+        {
+            var id = (int)CountRows(ProductSolrFields[nameof(Product.Id)], _solrProducts) + 1;
+            var categories = ReadData("Files/categories.txt");
+            var addedIds = new List<string>();
+            List<string> idsToRemove = new();
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var category = categories.ElementAt(_random.Next(344));
+                    var price = (double)_random.Next(9999999) / 100;
+                   
+                    _solrProducts.Add(new Product()
+                    {
+                        Category = category,
+                        Description = "added by test",
+                        Id = id,
+                        Name = $"Example product {i}",
+                        Price = price,
+                    });
+                    addedIds.Add(id.ToString());
+                    id++;
+                    progress.Report((double)i / samplesQuantity);
+                }
+            }
+            _solrProducts.Commit();
+            return addedIds;
+        }
 
         private IEnumerable<T> ContentSearch<T>(string phrase,
             IEnumerable<string> searchFields,

@@ -1,10 +1,12 @@
-﻿using Common.Facades;
+﻿using System.Configuration;
+using Common.Facades;
 using Common.Menu;
 using Common.Utilites;
 using EntityFramework;
 using EntityFrameworkSqlite;
 using NHibernateSql;
 using SolrEngine;
+using static SolrNet.StartOrCursor;
 
 var jsonManager = new JsonManager();
 var efMenu = new RelationalFrameworkMenu("Entity Framework - SQL Server",
@@ -15,6 +17,8 @@ var nHibernateMenu = new RelationalFrameworkMenu("NHibernate - SQL Server",
     new RelationalFrameworkTestsFacade(new NHibernateManagerFactory().Create(), jsonManager));
 
 var solrMenu = new FrameworkMenu("Solr", new FrameworkTestFacade(new SolrManager(), jsonManager));
+
+var sAttr = ConfigurationManager.AppSettings.Get("Key0");
 
 Console.WriteLine("Welcome to Database Performance Tester - C#");
 while (true)

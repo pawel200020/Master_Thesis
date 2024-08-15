@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Automapping;
+﻿using System.Configuration;
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -10,11 +11,9 @@ namespace NHibernateSql
 {
     public class NHibernateManagerFactory
     {
-        private const string connectionString =
-            "Server=PC2;Database=FrameworkPerformanceMT; User id=pawel;Password=DockerSqLp@assword$;TrustServerCertificate=True";
         private ISessionFactory contextFactory = Fluently.Configure()
             .Database(MsSqlConfiguration.MsSql2012
-                .ConnectionString(connectionString))
+                .ConnectionString(ConfigurationManager.AppSettings.Get("ConnectionString")))
             .Mappings(m =>
                 m.AutoMappings
                     .Add(AutoMap.AssemblyOf<Client>().UseOverridesFromAssemblyOf<UserMappingOverride>()))

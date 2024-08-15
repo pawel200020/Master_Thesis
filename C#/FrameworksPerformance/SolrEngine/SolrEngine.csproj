@@ -10,6 +10,7 @@
     <PackageReference Include="Flurl" Version="4.0.0" />
     <PackageReference Include="SolrNet" Version="1.1.2" />
     <PackageReference Include="SolrNet.Core" Version="1.1.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
