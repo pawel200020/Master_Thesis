@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 import me.tongfei.progressbar.ProgressBar;
 import org.dbFrameworks.Managers.IRelationalFrameworkManager;
 import org.dbFrameworks.entities.*;
-import org.dbFrameworks.persistence.CustomPersistenceUnitInfo;
+import org.dbFrameworks.persistance.CustomPersistenceUnitInfo;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
 import java.io.*;
@@ -19,12 +19,11 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-public class HibernateManager implements IRelationalFrameworkManager {
 
-
+public class HibernateSqliteManager implements IRelationalFrameworkManager {
     EntityManagerFactory contextFactory;
-
-    public HibernateManager() {
+    HibernateSqliteManager() {
+        //contextFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
         contextFactory = new HibernatePersistenceProvider().createContainerEntityManagerFactory(new CustomPersistenceUnitInfo(), new HashMap<>());
     }
 
@@ -289,19 +288,19 @@ public class HibernateManager implements IRelationalFrameworkManager {
         try (ProgressBar pb = new ProgressBar("SearchRecordsWhichDoesNotHaveConnection", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 //if (i % 2 != 0) {
-                    stopwatch.start();
-                    em.getTransaction().begin();
-                    var q = em.createQuery("SELECT p FROM Employees p WHERE p.Position is not null", Employees.class);
-                    var result = q.getResultList();
-                    List<String> usedPositions = new ArrayList<String>(new HashSet<>(result.stream()
-                            .map(object -> object.getPosition().getPositionName())
-                            .toList()));
-                    var q2 = em.createQuery("SELECT p FROM Positions p WHERE p.PositionName not in :arr", Positions.class);
-                    q2.setParameter("arr", usedPositions);
-                    var result2 = q2.getResultList();
-                    em.getTransaction().commit();
-                    testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
-                    pb.step();
+                stopwatch.start();
+                em.getTransaction().begin();
+                var q = em.createQuery("SELECT p FROM Employees p WHERE p.Position is not null", Employees.class);
+                var result = q.getResultList();
+                List<String> usedPositions = new ArrayList<String>(new HashSet<>(result.stream()
+                        .map(object -> object.getPosition().getPositionName())
+                        .toList()));
+                var q2 = em.createQuery("SELECT p FROM Positions p WHERE p.PositionName not in :arr", Positions.class);
+                q2.setParameter("arr", usedPositions);
+                var result2 = q2.getResultList();
+                em.getTransaction().commit();
+                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                pb.step();
 //                } else {
 //                    stopwatch.start();
 //                    em.getTransaction().begin();
@@ -361,7 +360,7 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 Orders o = new Orders();
                 o.setClient(client);
                 o.setEmployee(employee);
-                o.setOrderDate(new Date(2023,3,4));
+                o.setOrderDate(new Date(2023,3,4).toString());
                 o.setOrderDetails(OrderXml);
                 o.setTotalCost(120.00);
                 o.setStore(s);
