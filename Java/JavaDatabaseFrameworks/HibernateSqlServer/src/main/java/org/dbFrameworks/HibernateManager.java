@@ -1,6 +1,5 @@
 package org.dbFrameworks;
 
-import com.google.common.base.Stopwatch;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import me.tongfei.progressbar.ProgressBar;
@@ -12,12 +11,13 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 public class HibernateManager implements IRelationalFrameworkManager {
 
@@ -30,17 +30,17 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SingleRecordSearch(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SingleRecordSearch");
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("SingleRecordSearch", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 int index = ThreadLocalRandom.current().nextInt(1, 40000);
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var item = em.find(Orders.class, index);
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -50,7 +50,6 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SetOfDataSearch(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SetOfDataSearch");
         EntityManager em = contextFactory.createEntityManager();
 
@@ -59,13 +58,14 @@ public class HibernateManager implements IRelationalFrameworkManager {
         try (ProgressBar pb = new ProgressBar("SetOfDataSearch", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 int positionToSearch = ThreadLocalRandom.current().nextInt(1, positionsCount);
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var q = em.createQuery("Select e FROM Employees e WHERE e.Position.id=:position", Employees.class);
                 q.setParameter("position", positionToSearch);
                 var result = q.getResultList().toArray();
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -75,7 +75,6 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SetOfDataWithIsNullSearch(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SingleRecordSearch");
         EntityManager em = contextFactory.createEntityManager();
         var tablesWithNullQuantity = TableWithNull.values().length;
@@ -84,57 +83,63 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 var table = TableWithNull.values()[ThreadLocalRandom.current().nextInt(1, tablesWithNullQuantity)];
                 switch (table) {
                     case ClientPhone -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Clients e WHERE e.PhoneNumber is null ", Clients.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                     case ClientCountry -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Clients e WHERE e.Country is null ", Clients.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                     case EmployeesPhone -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Employees e WHERE e.PhoneNumber is null ", Employees.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                     case EmployeesPositionId -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Employees e WHERE e.Position is null ", Employees.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                     case Orders -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Orders e WHERE e.OrderDate is null ", Orders.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                     case Products -> {
-                        stopwatch.start();
+                        Instant start = Instant.now();
                         em.getTransaction().begin();
                         var q = em.createQuery("Select e FROM Products e WHERE e.ProductDescription is null ", Products.class);
                         var result = q.getResultList().toArray();
                         em.getTransaction().commit();
-                        testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                        Instant finish = Instant.now();
+                        testResult.AddMeasure(Duration.between(start, finish).toMillis());
                         break;
                     }
                 }
@@ -150,12 +155,11 @@ public class HibernateManager implements IRelationalFrameworkManager {
         var testResult = new TestResult(samplesQuantity, "AddRecords");
         var names = getFileFromResources("products.txt");
         List<Integer> idsToRemove = new ArrayList<>();
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("AddRecords", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 var name = names.get(ThreadLocalRandom.current().nextInt(0, names.size()));
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 Products p = new Products();
                 p.setProductName(name);
@@ -165,7 +169,8 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 em.persist(p);
                 var id = p.getProductId();
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 idsToRemove.add(id);
                 pb.step();
             }
@@ -180,19 +185,19 @@ public class HibernateManager implements IRelationalFrameworkManager {
         var addedIds = addRecordsSilent(samplesQuantity, getFileFromResources("products.txt"));
         var testResult = new TestResult(samplesQuantity, "EditRecords");
         var names = getFileFromResources("products.txt");
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("EditRecords", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 var recordId = addedIds.get(ThreadLocalRandom.current().nextInt(0, addedIds.size()));
                 var name = names.get(ThreadLocalRandom.current().nextInt(0, names.size()));
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var product = em.find(Products.class, recordId);
                 product.setProductName(name);
                 em.persist(product);
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -205,16 +210,16 @@ public class HibernateManager implements IRelationalFrameworkManager {
     public TestResult DeleteRecords(int samplesQuantity) {
         var addedIds = addRecordsSilent(samplesQuantity, getFileFromResources("products.txt"));
         var testResult = new TestResult(samplesQuantity, "DeleteRecords");
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("DeleteRecords", samplesQuantity)) {
             for (var id : addedIds) {
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var product = em.find(Products.class, id);
                 em.remove(product);
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -224,7 +229,6 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SearchTwoRelatedTables(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SearchTwoRelatedTables");
         EntityManager em = contextFactory.createEntityManager();
 
@@ -236,14 +240,15 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 em.getTransaction().begin();
                 var position = em.find(Positions.class, positionToSearch);
                 em.getTransaction().commit();
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var q = em.createQuery("Select e FROM Employees e WHERE e.Position.PositionName = :positionName", Employees.class);
                 q.setParameter("positionName", position.getPositionName());
                 var result = q.getResultList().toArray();
                 ;
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -253,7 +258,6 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SearchFourRelatedTables(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SearchFourRelatedTables");
         EntityManager em = contextFactory.createEntityManager();
 
@@ -266,14 +270,15 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 var position = em.find(Positions.class, ThreadLocalRandom.current().nextInt(1, positionsCount));
                 var store = em.find(Stores.class, ThreadLocalRandom.current().nextInt(1, storesCount));
                 em.getTransaction().commit();
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var q = em.createQuery("SELECT o FROM Orders o WHERE o.employee.Position.PositionName = :positionToFind AND o.store.Country = :storeCountry", Employees.class);
                 q.setParameter("positionToFind", position.getPositionName());
                 q.setParameter("storeCountry", store.getCountry());
                 var result = q.getResultList().toArray();
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -283,32 +288,33 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SearchRecordsWhichDoesNotHaveConnection(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SearchRecordsWhichDoesNotHaveConnection");
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("SearchRecordsWhichDoesNotHaveConnection", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 //if (i % 2 != 0) {
-                    stopwatch.start();
-                    em.getTransaction().begin();
-                    var q = em.createQuery("SELECT p FROM Employees p WHERE p.Position is not null", Employees.class);
-                    var result = q.getResultList();
-                    List<String> usedPositions = new ArrayList<String>(new HashSet<>(result.stream()
-                            .map(object -> object.getPosition().getPositionName())
-                            .toList()));
-                    var q2 = em.createQuery("SELECT p FROM Positions p WHERE p.PositionName not in :arr", Positions.class);
-                    q2.setParameter("arr", usedPositions);
-                    var result2 = q2.getResultList();
-                    em.getTransaction().commit();
-                    testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
-                    pb.step();
+                Instant start = Instant.now();
+                em.getTransaction().begin();
+                var q = em.createQuery("SELECT p FROM Employees p WHERE p.Position is not null", Employees.class);
+                var result = q.getResultList();
+                List<String> usedPositions = new ArrayList<String>(new HashSet<>(result.stream()
+                        .map(object -> object.getPosition().getPositionName())
+                        .toList()));
+                var q2 = em.createQuery("SELECT p FROM Positions p WHERE p.PositionName not in :arr", Positions.class);
+                q2.setParameter("arr", usedPositions);
+                var result2 = q2.getResultList();
+                em.getTransaction().commit();
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
+                pb.step();
 //                } else {
-//                    stopwatch.start();
+//                    Instant start = Instant.now();
 //                    em.getTransaction().begin();
 //                    var q = em.createQuery("SELECT p FROM Stores p WHERE p.Orders.size > 0", Stores.class);
 //                    var result = q.getResultList();
 //                    em.getTransaction().commit();
-//                    testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+//                    Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
 //                    pb.step();
 //                }
             }
@@ -319,20 +325,20 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SearchWithSubQuery(int samplesQuantity) {
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         var testResult = new TestResult(samplesQuantity, "SearchWithSubQuery");
         var countries = getFileFromResources("Country.txt");
         EntityManager em = contextFactory.createEntityManager();
         try (ProgressBar pb = new ProgressBar("SearchWithSubQuery", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 var countryToFind = countries.get(ThreadLocalRandom.current().nextInt(0, countries.size()));
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 var q = em.createQuery("SELECT o FROM Orders o WHERE o.client.Country =:ctf", Orders.class);
                 q.setParameter("ctf", countryToFind);
                 var result = q.getResultList().toArray();
                 em.getTransaction().commit();
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -343,7 +349,6 @@ public class HibernateManager implements IRelationalFrameworkManager {
     @Override
     public TestResult RemoveRelatedRecords(int samplesQuantity) {
         var testResult = new TestResult(samplesQuantity, "RemoveRelatedRecords");
-        Stopwatch stopwatch = Stopwatch.createUnstarted();
         EntityManager em = contextFactory.createEntityManager();
         var clientCount = getClientsCount(em);
         var employeeCount = getEmployeeCount(em);
@@ -361,7 +366,7 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 Orders o = new Orders();
                 o.setClient(client);
                 o.setEmployee(employee);
-                o.setOrderDate(new Date(2023,3,4));
+                o.setOrderDate(new Date(2023, 3, 4));
                 o.setOrderDetails(OrderXml);
                 o.setTotalCost(120.00);
                 o.setStore(s);
@@ -369,12 +374,13 @@ public class HibernateManager implements IRelationalFrameworkManager {
                 em.persist(o);
                 em.getTransaction().commit();
 
-                stopwatch.start();
+                Instant start = Instant.now();
                 em.getTransaction().begin();
                 em.remove(s);
                 em.getTransaction().commit();
 
-                testResult.AddMeasure(stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
+                Instant finish = Instant.now();
+                testResult.AddMeasure(Duration.between(start, finish).toMillis());
                 pb.step();
             }
         }
@@ -473,19 +479,19 @@ public class HibernateManager implements IRelationalFrameworkManager {
         return storesCount;
     }
 
-    private String  OrderXml = """
-<Order xmlns="urn:OrdersInfoNamespace">
-  <Product id="0">
-    <Name>rock</Name>
-    <Quantity>669</Quantity>
-  </Product>
-  <Product id="1">
-    <Name>toilet</Name>
-    <Quantity>837</Quantity>
-  </Product>
-  <Product id="2">
-    <Name>newspaper</Name>
-    <Quantity>38</Quantity>
-  </Product>
-</Order>""";
+    private String OrderXml = """
+            <Order xmlns="urn:OrdersInfoNamespace">
+              <Product id="0">
+                <Name>rock</Name>
+                <Quantity>669</Quantity>
+              </Product>
+              <Product id="1">
+                <Name>toilet</Name>
+                <Quantity>837</Quantity>
+              </Product>
+              <Product id="2">
+                <Name>newspaper</Name>
+                <Quantity>38</Quantity>
+              </Product>
+            </Order>""";
 }

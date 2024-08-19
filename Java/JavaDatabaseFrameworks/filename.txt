@@ -1,0 +1,115 @@
+{
+   "Language": Java
+   "Results": [
+          {
+   "Activity":SingleRecordSearch,
+   "AverageTimeElapsed":7.385,
+   "MedianTimeElapsed":7.0,
+   "StandardDeviationTimeElapsed":4.623069867523089,
+   "MaxTimeElapsed":146.0,
+   "MinTimeElapsed":3.0,
+   "VarianceTimeElapsed":21.37277499999995,
+   "TotalTimeElapsed":7.385,
+}
+          {
+   "Activity":SetOfDataSearch,
+   "AverageTimeElapsed":5.777,
+   "MedianTimeElapsed":6.0,
+   "StandardDeviationTimeElapsed":1.663511647088772,
+   "MaxTimeElapsed":50.0,
+   "MinTimeElapsed":4.0,
+   "VarianceTimeElapsed":2.7672709999999996,
+   "TotalTimeElapsed":5.777,
+}
+          {
+   "Activity":SingleRecordSearch,
+   "AverageTimeElapsed":32.959,
+   "MedianTimeElapsed":8.0,
+   "StandardDeviationTimeElapsed":58.58461674364698,
+   "MaxTimeElapsed":784.0,
+   "MinTimeElapsed":3.0,
+   "VarianceTimeElapsed":3432.1573190000026,
+   "TotalTimeElapsed":32.959,
+}
+          {
+   "Activity":AddRecords,
+   "AverageTimeElapsed":7.772,
+   "MedianTimeElapsed":8.0,
+   "StandardDeviationTimeElapsed":1.5549971061066357,
+   "MaxTimeElapsed":31.0,
+   "MinTimeElapsed":4.0,
+   "VarianceTimeElapsed":2.4180160000000113,
+   "TotalTimeElapsed":7.772,
+}
+          {
+   "Activity":EditRecords,
+   "AverageTimeElapsed":7.917,
+   "MedianTimeElapsed":8.0,
+   "StandardDeviationTimeElapsed":1.6168212640857975,
+   "MaxTimeElapsed":18.0,
+   "MinTimeElapsed":2.0,
+   "VarianceTimeElapsed":2.6141109999999963,
+   "TotalTimeElapsed":7.917,
+}
+          {
+   "Activity":DeleteRecords,
+   "AverageTimeElapsed":6.901,
+   "MedianTimeElapsed":7.0,
+   "StandardDeviationTimeElapsed":1.3554331411028777,
+   "MaxTimeElapsed":23.0,
+   "MinTimeElapsed":4.0,
+   "VarianceTimeElapsed":1.8371990000000133,
+   "TotalTimeElapsed":6.901,
+}
+          {
+   "Activity":SearchTwoRelatedTables,
+   "AverageTimeElapsed":6.105,
+   "MedianTimeElapsed":6.0,
+   "StandardDeviationTimeElapsed":1.1162325026624167,
+   "MaxTimeElapsed":27.0,
+   "MinTimeElapsed":3.0,
+   "VarianceTimeElapsed":1.2459750000000023,
+   "TotalTimeElapsed":6.105,
+}
+          {
+   "Activity":SearchFourRelatedTables,
+   "AverageTimeElapsed":64.455,
+   "MedianTimeElapsed":64.0,
+   "StandardDeviationTimeElapsed":8.54166113820958,
+   "MaxTimeElapsed":132.0,
+   "MinTimeElapsed":41.0,
+   "VarianceTimeElapsed":72.95997499999977,
+   "TotalTimeElapsed":64.455,
+}
+          {
+   "Activity":SearchRecordsWhichDoesNotHaveConnection,
+   "AverageTimeElapsed":10.858,
+   "MedianTimeElapsed":10.0,
+   "StandardDeviationTimeElapsed":5.203636805158486,
+   "MaxTimeElapsed":121.0,
+   "MinTimeElapsed":8.0,
+   "VarianceTimeElapsed":27.077836000000012,
+   "TotalTimeElapsed":10.858,
+}
+          {
+   "Activity":SearchWithSubQuery,
+   "AverageTimeElapsed":148.988,
+   "MedianTimeElapsed":153.0,
+   "StandardDeviationTimeElapsed":32.0235515831708,
+   "MaxTimeElapsed":360.0,
+   "MinTimeElapsed":50.0,
+   "VarianceTimeElapsed":1025.507856000001,
+   "TotalTimeElapsed":148.988,
+}
+          {
+   "Activity":RemoveRelatedRecords,
+   "AverageTimeElapsed":30.144,
+   "MedianTimeElapsed":30.0,
+   "StandardDeviationTimeElapsed":2.1431901455540516,
+   "MaxTimeElapsed":48.0,
+   "MinTimeElapsed":27.0,
+   "VarianceTimeElapsed":4.593263999999997,
+   "TotalTimeElapsed":30.144,
+}
+   ]'
+}

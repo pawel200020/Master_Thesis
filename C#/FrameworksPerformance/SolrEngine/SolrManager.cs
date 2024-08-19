@@ -129,6 +129,7 @@ namespace SolrEngine
                         Name = $"Example product {i}",
                         Price = price,
                     });
+                    _solrProducts.Commit();
                     sw.Stop();
                     idsToRemove.Add(id.ToString());
                     id++;
@@ -136,7 +137,7 @@ namespace SolrEngine
                     progress.Report((double)i / samplesQuantity);
                 }
             }
-            _solrProducts.Commit();
+            
             _solrProducts.Delete(idsToRemove);
             _solrProducts.Commit();
             return testResult;
@@ -211,7 +212,7 @@ namespace SolrEngine
             {nameof(Client.Id), "id"},
             {nameof(Client.Name), "name"},
             {nameof(Client.LastName), "category"},
-            {nameof(Client.Age), "price"},
+            {nameof(Client.Age), "age"},
             {nameof(Client.Salary), "salary"},
             {nameof(Client.Description), "description"},
             {nameof(Client.FavouriteProduct), "favourite_product"},

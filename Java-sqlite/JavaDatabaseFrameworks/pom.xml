@@ -9,8 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>HibernateSqlServer</module>
-        <module>SolrApi</module>
         <module>App</module>
         <module>Common</module>
         <module>HibernateSqlite</module>

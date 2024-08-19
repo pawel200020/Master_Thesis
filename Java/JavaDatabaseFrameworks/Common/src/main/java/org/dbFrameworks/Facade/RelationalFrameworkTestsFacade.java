@@ -3,6 +3,8 @@ package org.dbFrameworks.Facade;
 import org.dbFrameworks.Managers.IRelationalFrameworkManager;
 import org.dbFrameworks.TestsResults;
 
+import java.io.PrintWriter;
+
 public class RelationalFrameworkTestsFacade implements IRelationalFrameworkTestsFacade {
     IRelationalFrameworkManager _relationalFrameworkManager;
 
@@ -24,7 +26,15 @@ public class RelationalFrameworkTestsFacade implements IRelationalFrameworkTests
         testsResults.Add(_relationalFrameworkManager.SearchRecordsWhichDoesNotHaveConnection(samplesQuantity));
         testsResults.Add(_relationalFrameworkManager.SearchWithSubQuery(samplesQuantity));
         testsResults.Add(_relationalFrameworkManager.RemoveRelatedRecords(samplesQuantity));
-        return testsResults.toString();
+        var result = testsResults.toString();
+        try (PrintWriter out = new PrintWriter("filename.txt")) {
+            out.println(result);
+        }
+        catch (Exception ex){
+            System.out.println("an error occurred during saving to the file");
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     @Override

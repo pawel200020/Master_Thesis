@@ -41,7 +41,7 @@ public class TestResult {
         _maxTimeElapsed = Arrays.stream(_attemptsList).max().getAsDouble();
         _minTimeElapsed = Arrays.stream(_attemptsList).min().getAsDouble();
         _varianceTimeElapsed = calculateVariance(_attemptsList);
-        _totalTimeElapsed = Arrays.stream(_attemptsList).sum();
+        _totalTimeElapsed = Arrays.stream(_attemptsList).sum()/1000;
         _resultsPrepared = true;
     }
     private double getMedian(double[] array){

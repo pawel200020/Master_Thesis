@@ -37,6 +37,8 @@ public class FrameworkTestMenu {
     private void DisplayResult(String result){
         System.out.println(TEXT_GREEN + "Result\n----------------------\n"+result+"\n----------------------");
         System.out.println(TEXT_RESET+"Press any key to continue...");
+        var scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
     public void Display(){

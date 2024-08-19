@@ -87,7 +87,6 @@ public class CustomPersistenceUnitInfo implements PersistenceUnitInfo {
     public Properties getProperties() {
         var props = new Properties();
         props.setProperty("hibernate.dialect","org.hibernate.dialect.SQLServerDialect");
-        //props.setProperty("hibernate.show_sql","true");
         return props;
     }
 

@@ -103,6 +103,21 @@ namespace Common
             }
         }
 
+        public double TotalTimeElapsed
+        {
+            get
+            {
+                if (_totalTimeElapsedCached is not null)
+                    return _totalTimeElapsedCached.Value;
+
+                if (_addedSamples == _samples)
+                {
+                    _totalTimeElapsedCached = _attemptsList.Sum() / 1000;
+                    return _totalTimeElapsedCached.Value;
+                }
+                return -1;
+            }
+        }
 
         private double? _avgTimeElapsedCached;
         private double? _medianTimeElapsedCached;
@@ -110,6 +125,7 @@ namespace Common
         private double? _maxTimeElapsedCached;
         private double? _minTimeElapsedCached;
         private double? _varianceTimeElapsedCached;
+        private double? _totalTimeElapsedCached;
 
 
         private readonly int _samples;

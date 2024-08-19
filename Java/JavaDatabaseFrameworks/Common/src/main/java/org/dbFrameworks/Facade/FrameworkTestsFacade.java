@@ -3,6 +3,8 @@ package org.dbFrameworks.Facade;
 import org.dbFrameworks.Managers.IFrameworkManager;
 import org.dbFrameworks.TestsResults;
 
+import java.io.PrintWriter;
+
 public class FrameworkTestsFacade implements IFrameworkTestsFacade {
     private final IFrameworkManager _manager;
 
@@ -18,7 +20,15 @@ public class FrameworkTestsFacade implements IFrameworkTestsFacade {
         testsResults.Add(_manager.AddRecords(samplesQuantity));
         testsResults.Add(_manager.EditRecords(samplesQuantity));
         testsResults.Add(_manager.DeleteRecords(samplesQuantity));
-        return testsResults.toString();
+        var result = testsResults.toString();
+        try (PrintWriter out = new PrintWriter("filename.txt")) {
+            out.println(result);
+        }
+        catch (Exception ex){
+            System.out.println("an error occurred during saving to the file");
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     @Override
