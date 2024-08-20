@@ -30,7 +30,7 @@ namespace NHibernateSql
             var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
             using (var session = _contextFactory.OpenSession())
             {
-                var rowCount = session.Query<Employee>().Count() - 1;
+                var rowCount = session.Query<Order>().Count() - 1;
 
                 using (var progress = new ProgressBar())
                 {
@@ -39,7 +39,7 @@ namespace NHibernateSql
                         var number = _random.Next(rowCount) + 1;
                         Stopwatch sw = new Stopwatch();
                         sw.Start();
-                        var _ = session.Get<Employee>(number);
+                        var _ = session.Get<Order>(number);
                         sw.Stop();
                         progress.Report((double)i / samplesQuantity);
                         testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);

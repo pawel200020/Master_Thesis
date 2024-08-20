@@ -11,9 +11,20 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "NAME": os.path.join(BASE_DIR, "FrameworkPerformanceSqlLite.db"),
+    },
+    "sql-server":{
+        "ENGINE": "mssql",
+        "NAME": "FrameworkPerformanceMT",
+        "USER": "pawel",
+        "PASSWORD": "DockerSqLp@assword$",
+        "HOST": "PC2",
+        "PORT": "1433",
+        "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
+        },
     }
 }
+INSTALLED_APPS={}
 
 
 """
