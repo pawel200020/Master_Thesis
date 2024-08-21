@@ -7,7 +7,8 @@ these settings as is, and skip to START OF APPLICATION section below """
 # Turn off bytecode generation
 import sys
 
-from Tests.RelationalFrameworkMenu import RelationalFrameworkMenu
+from PySolr.PySolrTests import PySolrTests
+from Tests.FrameworkMenu import FrameworkMenu
 
 sys.dont_write_bytecode = True
 
@@ -18,29 +19,31 @@ import django
 django.setup()
 
 # Import your models for use in your script
-from db.models import *
+from Tests.RelationalFrameworkMenu import RelationalFrameworkMenu
 from Tests.SqliteTests import SqliteTests
+from Tests.SqlServerTests import SqlServerTests
 ############################################################################
 ## START OF APPLICATION
 ############################################################################
-""" Replace the code below with your own """
-# Seed a few users in the database
-# User.objects.create(name='Dan')
-# User.objects.create(name='Robert')
-#
-# for u in User.objects.all():
-#     print(f'ID: {u.id} \tUsername: {u.name}')
-#Product.objects.using('sql-server').all()
 sqliteTests = SqliteTests()
+sqlServerTests = SqlServerTests()
+pySolrTests = PySolrTests()
+
 sqliteFrameworkMenu = RelationalFrameworkMenu("Sqlite",sqliteTests)
+sqlServerFrameworkMenu = RelationalFrameworkMenu("SQL Server",sqlServerTests)
+solrServerFrameworkMenu = FrameworkMenu("PySolr",pySolrTests)
 print("Welcome to Database Performance Tester - Python")
 while True:
     print("Select framework which you want to test:")
-    print("1.Django ORM SQL Server\n2. DjangoOrm Sqlite\nX - Close program")
+    print("1.Django ORM SQL Server\n2. DjangoOrm Sqlite\n3.PySolr\nX - Close program")
 
     intput = input()
     match intput:
+         case "1":
+            sqlServerFrameworkMenu.showMenu()
          case "2":
              sqliteFrameworkMenu.showMenu()
+         case "3":
+             solrServerFrameworkMenu.showMenu()
          case "X":
              break

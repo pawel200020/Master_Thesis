@@ -4,7 +4,7 @@ from colorama import Style
 from Common.TestsResults import TestResults
 
 
-class RelationalFrameworkMenu:
+class FrameworkMenu:
     def __init__(self, frameworkName, frameworkTests):
         self.frameworkTests = frameworkTests
         self.Operations = """ Selected framework - {frameworkName}
@@ -18,15 +18,7 @@ class RelationalFrameworkMenu:
     D - Set of records search with isNull command
     E - Adding single records
     F - Edit single record
-    G - Delete single record
-
-    Multiple table tests:
-    H - Searching in two connected tables
-    I - Searching in four connected tables
-    J - Searching for records which does not have connection
-    K - Searching with subquery
-    L - Remove related records
-    X - Main menu""".format(frameworkName=frameworkName)
+    G - Delete single record""".format(frameworkName=frameworkName)
 
     def print_result(self, result):
         print(f"{Fore.GREEN}")
@@ -49,11 +41,6 @@ class RelationalFrameworkMenu:
                     testsResults.Add(self.frameworkTests.addRecords(int(rep)))
                     testsResults.Add(self.frameworkTests.editRecords(int(rep)))
                     testsResults.Add(self.frameworkTests.deleteRecords(int(rep)))
-                    testsResults.Add(self.frameworkTests.searchTwoRelatedTables(int(rep)))
-                    testsResults.Add(self.frameworkTests.serchFourRelatedTables(int(rep)))
-                    testsResults.Add(self.frameworkTests.searchRecordsWhichDoesNotHaveConnection(int(rep)))
-                    testsResults.Add(self.frameworkTests.searchWithSubQuery(int(rep)))
-                    testsResults.Add(self.frameworkTests.removeRelatedRecords(int(rep)))
                     self.print_result(testsResults)
                  case "B":
                      result = self.frameworkTests.singleRecordSearch(int(rep))
@@ -73,20 +60,5 @@ class RelationalFrameworkMenu:
                  case "G":
                      result = self.frameworkTests.deleteRecords(int(rep))
                      self.print_result(result)
-                 case "H":
-                     result = self.frameworkTests.searchTwoRelatedTables(int(rep))
-                     self.print_result(result)
-                 case "I":
-                     result = self.frameworkTests.serchFourRelatedTables(int(rep))
-                     self.print_result(result)
-                 case "J":
-                     result = self.frameworkTests.searchRecordsWhichDoesNotHaveConnection(int(rep))
-                     self.print_result(result)
-                 case "K":
-                    result = self.frameworkTests.searchWithSubQuery(int(rep))
-                    self.print_result(result)
-                 case "L":
-                    result = self.frameworkTests.removeRelatedRecords(int(rep))
-                    self.print_result(result)
                  case "X":
                      return
