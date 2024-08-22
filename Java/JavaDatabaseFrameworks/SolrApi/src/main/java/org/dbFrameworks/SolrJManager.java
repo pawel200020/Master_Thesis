@@ -81,7 +81,6 @@ public class SolrJManager implements IFrameworkManager {
                 q.addField("recent_bought_products");
                 q.addField("birth_date");
                 q.addField("has_children_b");
-                q.addField("has_children_b");
                 q.addField("how_many_cats_i");
                 q.addField("has_partner_b");
                 q.set("qf", "name");
