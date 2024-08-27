@@ -1,0 +1,1 @@
+{!join from=id_int to=favourite_product fromIndex=Products}id:2245

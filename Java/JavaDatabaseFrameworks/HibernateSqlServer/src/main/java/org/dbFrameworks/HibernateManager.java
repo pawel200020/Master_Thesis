@@ -75,7 +75,7 @@ public class HibernateManager implements IRelationalFrameworkManager {
 
     @Override
     public TestResult SetOfDataWithIsNullSearch(int samplesQuantity) {
-        var testResult = new TestResult(samplesQuantity, "SingleRecordSearch");
+        var testResult = new TestResult(samplesQuantity, "SetOfDataWithIsNullSearch");
         EntityManager em = contextFactory.createEntityManager();
         var tablesWithNullQuantity = TableWithNull.values().length;
         try (ProgressBar pb = new ProgressBar("SingleRecordSearch", samplesQuantity)) {

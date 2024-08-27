@@ -420,7 +420,7 @@ namespace NHibernateSql
                         sw.Start();
                         using (ITransaction tx = session.BeginTransaction())
                         {
-                            session.Delete(order);
+                            session.Delete(store);
                             tx.Commit();
                         }
                         sw.Stop();

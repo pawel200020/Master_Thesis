@@ -17,7 +17,8 @@ class Product:
                 "name": u.name,
                 'description':u.description,
                 'price': u.price,
-                'category': u.category
+                'category': u.category,
+                "id_int": u.id,
             }
         return dict
 
@@ -148,7 +149,13 @@ def createFields():
             "type": "text_en",
             "indexed": True,
             "stored": True},
-    }]
+    },{
+        "add-field":{
+            "name":"id_int",
+            "type": "pint",
+            "indexed": True,
+            "stored": True ,
+            "docValues": True },}]
     for i in clientsJsons:
         response = requests.post(clientsUrl,json = i)
         print(f"{response.json()} Clients fields creation")

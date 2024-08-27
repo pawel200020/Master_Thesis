@@ -189,7 +189,8 @@ class SqlServerTests:
             store = StoreServ.objects.using('sql-server').create(Address="Norymberska 1 30-412 Krakow", Country = "Poland")
             order = OrderServ.objects.using('sql-server').create(Employee=employee, Store=store, Client=client, OrderDate=datetime.now(), TotalCost = 998)
             now = datetime.now()
-            Store.objects.filter(StoreId=store.StoreId).delete()
+            object = Store.objects.using('sql-server').get(StoreId=store.StoreId)
+            object.delete()
             elapsed = now.microsecond // 1000
             test_result.add_sample(elapsed)
         return test_result
