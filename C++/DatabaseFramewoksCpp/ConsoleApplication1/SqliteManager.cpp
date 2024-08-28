@@ -449,7 +449,7 @@ public:
 		std::vector<std::string>* positionNames = GetPositionNames();
 		std::vector<Store>* stores = GetStores();
 
-		TestResult* result = new TestResult(samplesQuantity, "SearchTwoRelatedRecords");
+		TestResult* result = new TestResult(samplesQuantity, "SearchFourRelatedRecords");
 		sqlite3* DB;
 		try
 		{

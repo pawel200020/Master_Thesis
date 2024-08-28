@@ -1,0 +1,111 @@
+{
+        "Activity": "SingleRecordSearch"
+            "AverageTimeElapsed":0.0018
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":0.0446874
+        "MaxTimeElapsed":2
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":0.00199696
+            "TotalTimeElapsed"18
+}
+{
+        "Activity": "SetOfDataSearch"
+            "AverageTimeElapsed":0.009
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":0.0944452
+        "MaxTimeElapsed":1
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":0.00891989
+            "TotalTimeElapsed"90
+}
+{
+        "Activity": "SetOfDataWithIsNullSearch"
+            "AverageTimeElapsed":0.29918
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":4.53568
+        "MaxTimeElapsed":90
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":20.5724
+            "TotalTimeElapsed"1241
+}
+{
+        "Activity": "AddRecords"
+            "AverageTimeElapsed":3.8532
+            "MedianTimeElapsed":4
+            "StandardDeviationTimeElapsed":1.44536
+        "MaxTimeElapsed":37
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":2.08906
+            "TotalTimeElapsed"38532
+}
+{
+        "Activity": "EditRecords"
+            "AverageTimeElapsed":3.872
+            "MedianTimeElapsed":4
+            "StandardDeviationTimeElapsed":1.54566
+        "MaxTimeElapsed":28
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":2.38905
+            "TotalTimeElapsed"38720
+}
+{
+        "Activity": "DeleteRecords"
+            "AverageTimeElapsed":7.56574
+            "MedianTimeElapsed":5
+            "StandardDeviationTimeElapsed":3.73843
+        "MaxTimeElapsed":43
+            "MinTimeElapsed"3
+            "VarianceTimeElapsed":13.9758
+            "TotalTimeElapsed"70490
+}
+{
+        "Activity": "SearchTwoRelatedRecords"
+            "AverageTimeElapsed":0.0259
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":0.161344
+        "MaxTimeElapsed":3
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":0.0260318
+            "TotalTimeElapsed"259
+}
+{
+        "Activity": "SearchFourRelatedRecords"
+            "AverageTimeElapsed":0.0002
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":0.02
+        "MaxTimeElapsed":2
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":0.0004
+            "TotalTimeElapsed"2
+}
+{
+        "Activity": "SearchWithSubquery"
+            "AverageTimeElapsed":0.0001
+            "MedianTimeElapsed":0
+            "StandardDeviationTimeElapsed":0.01
+        "MaxTimeElapsed":1
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":0.0001
+            "TotalTimeElapsed"1
+}
+{
+        "Activity": "SearchRecordsWhichDoesNotHaveConnection"
+            "AverageTimeElapsed":74.735
+            "MedianTimeElapsed":70.5
+            "StandardDeviationTimeElapsed":74.9378
+        "MaxTimeElapsed":226
+            "MinTimeElapsed"0
+            "VarianceTimeElapsed":5615.67
+            "TotalTimeElapsed"74735
+}
+{
+        "Activity": "RemoveRelatedRecords"
+            "AverageTimeElapsed":301.911
+            "MedianTimeElapsed":298
+            "StandardDeviationTimeElapsed":14.187
+        "MaxTimeElapsed":386
+            "MinTimeElapsed"284
+            "VarianceTimeElapsed":201.272
+            "TotalTimeElapsed"301911
+}
+]
