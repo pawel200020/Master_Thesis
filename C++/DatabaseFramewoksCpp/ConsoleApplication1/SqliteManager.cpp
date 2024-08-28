@@ -535,7 +535,8 @@ public:
 				srand((unsigned)time(nullptr));
 				std::string countryToFind = countries->at(rand() % countries->size());
 				auto start_time = std::chrono::high_resolution_clock::now();
-				std::string sql = "Insert into Stores ([Address] ,[Country]) Values ('Norymberska 1 30-412 Krakow','Poland')";
+				std::string sql =std::format(
+					R"(SELECT "Orders"."OrderId", "Orders"."ClientId", "Orders"."EmployeeId", "Orders"."OrderDate", "Orders"."TotalCost", "Orders"."StoreId", "Orders"."OrderDetails" FROM "Orders" INNER JOIN "Clients" ON ("Orders"."ClientId" = "Clients"."ClientId") WHERE "Clients"."Country" = {})",countryToFind);
 				std::vector<Order>* orders = new std::vector<Order>();
 				sqlite3_exec(DB, sql.c_str(), OrderCallback, orders, nullptr);
 				auto end_time = std::chrono::high_resolution_clock::now();
@@ -564,30 +565,29 @@ public:
 		sqlite3_open(_dbLocation.c_str(), &DB);
 		sqlite3_exec(DB, sql2.c_str(), ClientCallback, clients, nullptr);
 		sqlite3_exec(DB, sql.c_str(), EmployeeCallback, employee, nullptr);
+		std::vector<int>* ids = new std::vector<int>();
 		for (int i = 0; i < samplesQuantity; i++)
 		{
+			ids->clear();
 			auto client = clients->at(rand() % clients->size());
 			auto emp = employee->at(rand() % employee->size());
 			std::string sql3 = "Insert into Stores ([Address] ,[Country]) Values ('Norymberska 1 30-412 Krakow','Poland')";
 			sqlite3_exec(DB, sql3.c_str(), nullptr, 0, nullptr);
 			sql3 = "Select StoreId From Stores Where Address ='Norymberska 1 30-412 Krakow' Limit 1";
-			std::vector<int>* ids = new std::vector<int>();
+			
 			sqlite3_exec(DB, sql3.c_str(), CollectIdsCallback, ids, nullptr);
 			int idStoreToOrder = ids->front();
 			sql3 = std::format("Insert into Orders ([ClientId], [EmployeeId], [OrderDate], [OrderDetails], [TotalCost], [StoreId]) values ({},{},'2018-10-24 07:58:21.340','sample bad detalis data',331.33,{})", client.ClientId, emp.EmployeeId, idStoreToOrder);
 			sqlite3_exec(DB, sql3.c_str(), nullptr, 0, nullptr);
-			sql3 = "Select OrderId From Orders Where OrderDetails = 'sample bad detalis data'";
-			ids->clear();
-			sqlite3_exec(DB, sql3.c_str(), CollectIdsCallback, ids, nullptr);
-			int id = ids->front();
 
 			auto start_time = std::chrono::high_resolution_clock::now();
-			sql3 = std::format("Delete From Orders Where OrderId = {} ", id);
+			sql3 = std::format("PRAGMA foreign_keys = ON; Delete From Stores Where StoreId = {} ", idStoreToOrder);
 			sqlite3_exec(DB, sql3.c_str(), nullptr, 0, nullptr);
 			auto end_time = std::chrono::high_resolution_clock::now();
 			auto time = end_time - start_time;
 			result->AddMeasure(time / std::chrono::milliseconds(1));
 		}
+		delete ids;
 		return result->GetTestResultAsString();
 	}
 

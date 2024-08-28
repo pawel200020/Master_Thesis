@@ -1,0 +1,130 @@
+{
+   "Language": Java
+   "Results": [
+          {
+   "Activity":SingleRecordSearch,
+   "AverageTimeElapsed":14.4945,
+   "MedianTimeElapsed":15.0,
+   "StandardDeviationTimeElapsed":4.203328413293324,
+   "MaxTimeElapsed":32.0,
+   "MinTimeElapsed":2.0,
+   "VarianceTimeElapsed":17.667969749998974,
+   "TotalTimeElapsed":144.945,
+}
+          {
+   "Activity":SetOfDataSearch,
+   "AverageTimeElapsed":5.6577,
+   "MedianTimeElapsed":6.0,
+   "StandardDeviationTimeElapsed":0.7687201766573544,
+   "MaxTimeElapsed":13.0,
+   "MinTimeElapsed":3.0,
+   "VarianceTimeElapsed":0.5909307100001141,
+   "TotalTimeElapsed":56.577,
+}
+          {
+   "Activity":SingleRecordSearch,
+   "AverageTimeElapsed":34.5575,
+   "MedianTimeElapsed":8.0,
+   "StandardDeviationTimeElapsed":55.36925585331655,
+   "MaxTimeElapsed":644.0,
+   "MinTimeElapsed":5.0,
+   "VarianceTimeElapsed":3065.7544937500293,
+   "TotalTimeElapsed":345.575,
+}
+          {
+   "Activity":AddRecords,
+   "AverageTimeElapsed":12.7238,
+   "MedianTimeElapsed":13.0,
+   "StandardDeviationTimeElapsed":3.049739916780123,
+   "MaxTimeElapsed":82.0,
+   "MinTimeElapsed":4.0,
+   "VarianceTimeElapsed":9.300913560002034,
+   "TotalTimeElapsed":127.238,
+}
+          {
+   "Activity":EditRecords,
+   "AverageTimeElapsed":12.2513,
+   "MedianTimeElapsed":13.0,
+   "StandardDeviationTimeElapsed":2.4846223676852466,
+   "MaxTimeElapsed":23.0,
+   "MinTimeElapsed":2.0,
+   "VarianceTimeElapsed":6.17334831000184,
+   "TotalTimeElapsed":122.513,
+}
+          {
+   "Activity":DeleteRecords,
+   "AverageTimeElapsed":7.1439,
+   "MedianTimeElapsed":7.0,
+   "StandardDeviationTimeElapsed":1.5194712205238194,
+   "MaxTimeElapsed":80.0,
+   "MinTimeElapsed":4.0,
+   "VarianceTimeElapsed":2.3087927900001457,
+   "TotalTimeElapsed":71.439,
+}
+          {
+   "Activity":SearchTwoRelatedTables,
+   "AverageTimeElapsed":6.3752,
+   "MedianTimeElapsed":6.0,
+   "StandardDeviationTimeElapsed":0.8329615597372502,
+   "MaxTimeElapsed":15.0,
+   "MinTimeElapsed":3.0,
+   "VarianceTimeElapsed":0.6938249599999126,
+   "TotalTimeElapsed":63.752,
+}
+          {
+   "Activity":SearchFourRelatedTables,
+   "AverageTimeElapsed":100.3047,
+   "MedianTimeElapsed":103.0,
+   "StandardDeviationTimeElapsed":19.602975741197934,
+   "MaxTimeElapsed":223.0,
+   "MinTimeElapsed":41.0,
+   "VarianceTimeElapsed":384.2766579099947,
+   "TotalTimeElapsed":1003.047,
+}
+          {
+   "Activity":SearchRecordsWhichDoesNotHaveConnection,
+   "AverageTimeElapsed":10.1904,
+   "MedianTimeElapsed":10.0,
+   "StandardDeviationTimeElapsed":1.7687701490018435,
+   "MaxTimeElapsed":96.0,
+   "MinTimeElapsed":7.0,
+   "VarianceTimeElapsed":3.1285478400000035,
+   "TotalTimeElapsed":101.904,
+}
+          {
+   "Activity":SearchWithSubQuery,
+   "AverageTimeElapsed":157.0392,
+   "MedianTimeElapsed":156.0,
+   "StandardDeviationTimeElapsed":15.113128840846368,
+   "MaxTimeElapsed":275.0,
+   "MinTimeElapsed":54.0,
+   "VarianceTimeElapsed":228.4066633600223,
+   "TotalTimeElapsed":1570.392,
+}
+          {
+   "Activity":RemoveRelatedRecords,
+   "AverageTimeElapsed":36.4157,
+   "MedianTimeElapsed":36.0,
+   "StandardDeviationTimeElapsed":4.925270907269967,
+   "MaxTimeElapsed":149.0,
+   "MinTimeElapsed":28.0,
+   "VarianceTimeElapsed":24.25829350999992,
+   "TotalTimeElapsed":364.157,
+}
+   ]'
+}
+SingleRecordSearch 100% │████████████████████│ 10000/10000 (0:02:29 / 0:00:00) 
+SetOfDataSearch 100% │███████████████████████│ 10000/10000 (0:01:01 / 0:00:00) 
+SingleRecordSearch 100% │████████████████████│ 10000/10000 (0:05:50 / 0:00:00) 
+AddRecords 100% │████████████████████████████│ 10000/10000 (0:02:12 / 0:00:00) 
+removeRecordsSilent 100% │███████████████████│ 10000/10000 (0:01:20 / 0:00:00) 
+addRecordsSilent 100% │██████████████████████│ 10000/10000 (0:02:11 / 0:00:00) 
+EditRecords 100% │███████████████████████████│ 10000/10000 (0:02:07 / 0:00:00) 
+removeRecordsSilent 100% │███████████████████│ 10000/10000 (0:01:16 / 0:00:00) 
+addRecordsSilent 100% │██████████████████████│ 10000/10000 (0:02:12 / 0:00:00) 
+DeleteRecords 100% │█████████████████████████│ 10000/10000 (0:01:16 / 0:00:00) 
+SearchTwoRelatedTables 100% │████████████████│ 10000/10000 (0:01:49 / 0:00:00) 
+SearchFourRelatedTables 100% │███████████████│ 10000/10000 (0:21:37 / 0:00:00) 
+SearchRecordsWhichDoesNotHaveConnection 100% │█│ 10000/10000 (0:01:45 / 0:00:00
+SearchWithSubQuery 100% │████████████████████│ 10000/10000 (0:26:15 / 0:00:00) 
+RemoveRelatedRecords 100% │██████████████████│ 10000/10000 (0:12:12 / 0:00:00) 

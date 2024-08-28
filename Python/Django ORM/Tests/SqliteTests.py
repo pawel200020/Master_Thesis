@@ -174,7 +174,7 @@ class SqliteTests:
         for i in tqdm(range(samplesQuantity)):
             country = random.choice(countries)
             now = datetime.now()
-            Order.objects.filter(Client__Country=country)
+            result = Order.objects.filter(Client__Country=country)
             elapsed = now.microsecond // 1000
             test_result.add_sample(elapsed)
         return test_result

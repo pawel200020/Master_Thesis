@@ -1,0 +1,113 @@
+"Language": "Python"
+"Results": [{
+    "Activity": singleRecordSearch,
+    "AverageTimeElapsed": 486.9272,
+    "MedianTimeElapsed": 476.0,
+    "StandardDeviationTimeElapsed": 275.2180838901397,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 75744.99370015999,
+    "TotalTimeElapsed": 4869272.0,
+}
+{
+    "Activity": setOfDataSearch,
+    "AverageTimeElapsed": 504.2644,
+    "MedianTimeElapsed": 676.0,
+    "StandardDeviationTimeElapsed": 351.82643887667115,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 123781.84309264002,
+    "TotalTimeElapsed": 5042644.0,
+}
+{
+    "Activity": setOfDataWithIsNullSearch,
+    "AverageTimeElapsed": 619.9864,
+    "MedianTimeElapsed": 625.0,
+    "StandardDeviationTimeElapsed": 165.84930332998087,
+    "MaxTimeElapsed": 900.0,
+    "MinTimeElapsed": 320.0,
+    "VarianceTimeElapsed": 27505.99141504,
+    "TotalTimeElapsed": 6199864.0,
+}
+{
+    "Activity": AddRecords,
+    "AverageTimeElapsed": 500.4631,
+    "MedianTimeElapsed": 500.0,
+    "StandardDeviationTimeElapsed": 289.26511894521605,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 83674.30903839,
+    "TotalTimeElapsed": 5004631.0,
+}
+{
+    "Activity": EditRecords,
+    "AverageTimeElapsed": 497.6356,
+    "MedianTimeElapsed": 497.0,
+    "StandardDeviationTimeElapsed": 288.58837192901586,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 83283.24841264,
+    "TotalTimeElapsed": 4976356.0,
+}
+{
+    "Activity": DeleteRecords,
+    "AverageTimeElapsed": 497.6601,
+    "MedianTimeElapsed": 497.0,
+    "StandardDeviationTimeElapsed": 289.0860570279895,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 83570.74836799,
+    "TotalTimeElapsed": 4976601.0,
+}
+{
+    "Activity": SearchTwoRelatedTables,
+    "AverageTimeElapsed": 503.1944,
+    "MedianTimeElapsed": 518.0,
+    "StandardDeviationTimeElapsed": 291.16339709626965,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 84776.12380864,
+    "TotalTimeElapsed": 5031944.0,
+}
+{
+    "Activity": SearchFourRelatedTables,
+    "AverageTimeElapsed": 499.8546,
+    "MedianTimeElapsed": 503.0,
+    "StandardDeviationTimeElapsed": 283.26898040350267,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 80241.31525883998,
+    "TotalTimeElapsed": 4998546.0,
+}
+{
+    "Activity": searchRecordsWhichDoesNotHaveConnection,
+    "AverageTimeElapsed": 496.326,
+    "MedianTimeElapsed": 497.0,
+    "StandardDeviationTimeElapsed": 288.8022360093495,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 83406.731524,
+    "TotalTimeElapsed": 4963260.0,
+}
+{
+    "Activity": searchWithSubQuery,
+    "AverageTimeElapsed": 435.2673,
+    "MedianTimeElapsed": 305.0,
+    "StandardDeviationTimeElapsed": 343.103888422603,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 117720.27825071,
+    "TotalTimeElapsed": 4352673.0,
+}
+{
+    "Activity": removeRelatedRecords,
+    "AverageTimeElapsed": 497.7576,
+    "MedianTimeElapsed": 498.0,
+    "StandardDeviationTimeElapsed": 288.904286645664,
+    "MaxTimeElapsed": 999.0,
+    "MinTimeElapsed": 0.0,
+    "VarianceTimeElapsed": 83465.68684224,
+    "TotalTimeElapsed": 4977576.0,
+}
+     ]
+}

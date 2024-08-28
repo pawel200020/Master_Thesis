@@ -1,0 +1,115 @@
+{
+  "Language": "C#",
+  "Results": [
+    {
+      "Activity": "SingleRecordSearch",
+      "AverageTimeElapsed": 1.3717625700000027,
+      "MedianTimeElapsed": 1.3777,
+      "StandardDeviationTimeElapsed": 0.7401126175067265,
+      "MaxTimeElapsed": 31.0309,
+      "MinTimeElapsed": 0.0004,
+      "VarianceTimeElapsed": 0.5477666865926581,
+      "TotalTimeElapsed": 13.717625700000026
+    },
+    {
+      "Activity": "SetOfDataSearch",
+      "AverageTimeElapsed": 1.1010336300000048,
+      "MedianTimeElapsed": 1.0267,
+      "StandardDeviationTimeElapsed": 0.2462605406869175,
+      "MaxTimeElapsed": 4.9286,
+      "MinTimeElapsed": 0.8722,
+      "VarianceTimeElapsed": 0.06064425389941294,
+      "TotalTimeElapsed": 11.010336300000048
+    },
+    {
+      "Activity": "SetOfDataWithIsNullSearch",
+      "AverageTimeElapsed": 0.49725120000000295,
+      "MedianTimeElapsed": 0.0116,
+      "StandardDeviationTimeElapsed": 0.6199086187851586,
+      "MaxTimeElapsed": 4.9963,
+      "MinTimeElapsed": 0.0,
+      "VarianceTimeElapsed": 0.384286695644123,
+      "TotalTimeElapsed": 4.972512000000029
+    },
+    {
+      "Activity": "AddRecords",
+      "AverageTimeElapsed": 22.517058519999978,
+      "MedianTimeElapsed": 22.255499999999998,
+      "StandardDeviationTimeElapsed": 2.076424813889549,
+      "MaxTimeElapsed": 45.8275,
+      "MinTimeElapsed": 18.898,
+      "VarianceTimeElapsed": 4.311540007736247,
+      "TotalTimeElapsed": 225.17058519999978
+    },
+    {
+      "Activity": "EditRecords",
+      "AverageTimeElapsed": 25.882869220000003,
+      "MedianTimeElapsed": 24.08,
+      "StandardDeviationTimeElapsed": 11.158787459362399,
+      "MaxTimeElapsed": 180.4926,
+      "MinTimeElapsed": 15.8611,
+      "VarianceTimeElapsed": 124.51853756322355,
+      "TotalTimeElapsed": 258.82869220000003
+    },
+    {
+      "Activity": "DeleteRecords",
+      "AverageTimeElapsed": 24.770745590000086,
+      "MedianTimeElapsed": 22.2622,
+      "StandardDeviationTimeElapsed": 13.197707058136112,
+      "MaxTimeElapsed": 244.6014,
+      "MinTimeElapsed": 18.8115,
+      "VarianceTimeElapsed": 174.17947159237576,
+      "TotalTimeElapsed": 247.70745590000087
+    },
+    {
+      "Activity": "SearchTwoRelatedTables",
+      "AverageTimeElapsed": 1.8329225300000067,
+      "MedianTimeElapsed": 1.78985,
+      "StandardDeviationTimeElapsed": 0.307288887490968,
+      "MaxTimeElapsed": 15.969,
+      "MinTimeElapsed": 1.3456,
+      "VarianceTimeElapsed": 0.0944264603754368,
+      "TotalTimeElapsed": 18.32922530000007
+    },
+    {
+      "Activity": "SearchFourRelatedTables",
+      "AverageTimeElapsed": 43.04706494000006,
+      "MedianTimeElapsed": 43.9482,
+      "StandardDeviationTimeElapsed": 5.664301387967636,
+      "MaxTimeElapsed": 104.2782,
+      "MinTimeElapsed": 29.6369,
+      "VarianceTimeElapsed": 32.08431021373208,
+      "TotalTimeElapsed": 430.47064940000064
+    },
+    {
+      "Activity": "SearchRecordsWhichDoesNotHaveConnection",
+      "AverageTimeElapsed": 0.002324379999999708,
+      "MedianTimeElapsed": 0.0018,
+      "StandardDeviationTimeElapsed": 0.017595082162559773,
+      "MaxTimeElapsed": 1.7556,
+      "MinTimeElapsed": 0.0016,
+      "VarianceTimeElapsed": 0.00030958691630722914,
+      "TotalTimeElapsed": 0.023243799999997084
+    },
+    {
+      "Activity": "SearchWithSubQuery",
+      "AverageTimeElapsed": 0.00257648999999984,
+      "MedianTimeElapsed": 0.0022,
+      "StandardDeviationTimeElapsed": 0.004961926274254289,
+      "MaxTimeElapsed": 0.3575,
+      "MinTimeElapsed": 0.0021,
+      "VarianceTimeElapsed": 2.4620712351135044E-05,
+      "TotalTimeElapsed": 0.025764899999998397
+    },
+    {
+      "Activity": "RemoveRelatedRecords",
+      "AverageTimeElapsed": 77.7075788000002,
+      "MedianTimeElapsed": 76.88765000000001,
+      "StandardDeviationTimeElapsed": 4.9872825105193375,
+      "MaxTimeElapsed": 160.2957,
+      "MinTimeElapsed": 68.5301,
+      "VarianceTimeElapsed": 24.872986839732064,
+      "TotalTimeElapsed": 777.075788000002
+    }
+  ]
+}
