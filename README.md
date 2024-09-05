@@ -6,10 +6,10 @@
 W ramach pracy, wykonam przegląd powszechnie stosowanych frameworków w językach C#, Java, Python. Porównamy także wydajność frameworków. Sprawdzę także frameworki dla nierelacyjnych baz danych MongoDb czy Solr. Zaimplemetuję także własny drm. Pisanie własnego frameworka jest znaczącym ułatwieniem przy pisaniu aplikacji, gdyż jest on przystosowany wydajnościowo do implementowanego systemu. Finalnie porównam wydajność własnego frameworka do tych które mamy powszechnie dostępne. Wyniki porównań posłużą do stworzenia raportu pokazujące przewagi i zalety pisania wlanych frameworków
 
 ### Frameworki będą sprawdzone w językach:
-- [ ] C#
-- [ ] C++
-- [ ] Java
-- [ ] Python
+- [X] C#
+- [X] C++
+- [X] Java
+- [X] Python
 
 ### Własny framework zaimplementuję w języku 
 - [ ] C#
