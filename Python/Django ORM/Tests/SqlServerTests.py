@@ -21,20 +21,19 @@ class SqlServerTests:
         addedIds = []
         for i in tqdm(range(samplesQuantity)):
             name = random.choice(productNames)
-            product = ProductServ.objects.using('sql-server').create(ProductName=name, ProductDescription="AddedByTest", Price=21.36,
-                                             Supplier="None")
+            product = ProductServ.objects.using('sql-server').create(ProductName=name, ProductDescription="AddedByTest", Price=21.36, Supplier="None")
             addedIds.append(product.ProductId)
         return addedIds
 
     def singleRecordSearch(self, samplesQuantity):
         test_result = TestResult(samplesQuantity, "singleRecordSearch")
-        employeeCount = EmployeeServ.objects.using('sql-server').count()
+        orderCount = OrderServ.objects.using('sql-server').count()
         for i in tqdm(range(samplesQuantity)):
-            id = random.randrange(1, employeeCount)
+            id = random.randrange(1, orderCount)
             now = datetime.now()
-            item = EmployeeServ.objects.using('sql-server').get(EmployeeId=id)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            item = OrderServ.objects.using('sql-server').get(OrderId=id)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         return test_result
 
     def setOfDataSearch(self, samplesQuantity):
@@ -43,9 +42,9 @@ class SqlServerTests:
         for i in tqdm(range(samplesQuantity)):
             id = random.randrange(1, positionsCount)
             now = datetime.now()
-            item = EmployeeServ.objects.using('sql-server').filter(Position_id=id)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            item = [x for x in EmployeeServ.objects.using('sql-server').filter(Position_id=id)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds /1000)
         return test_result
 
     def setOfDataWithIsNullSearch(self, samplesQuantity):
@@ -55,34 +54,34 @@ class SqlServerTests:
             match table:
                 case TableWithNull.ClientPhone:
                     now = datetime.now()
-                    ClientServ.objects.using('sql-server').filter(PhoneNumber__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in ClientServ.objects.using('sql-server').filter(PhoneNumber__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.ClientCountry:
                     now = datetime.now()
-                    ClientServ.objects.using('sql-server').filter(Country__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in ClientServ.objects.using('sql-server').filter(Country__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.EmployeesPhone:
                     now = datetime.now()
-                    EmployeeServ.objects.using('sql-server').filter(PhoneNumber__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in EmployeeServ.objects.using('sql-server').filter(PhoneNumber__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.EmployeesPositionId:
                     now = datetime.now()
-                    EmployeeServ.objects.using('sql-server').filter(Position_id__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in EmployeeServ.objects.using('sql-server').filter(Position_id__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.Orders:
                     now = datetime.now()
-                    OrderServ.objects.using('sql-server').filter(OrderDate__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in OrderServ.objects.using('sql-server').filter(OrderDate__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.Products:
                     now = datetime.now()
-                    OrderServ.objects.using('sql-server').filter(ProductDescription__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in OrderServ.objects.using('sql-server').filter(ProductDescription__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def addRecords(self, samplesQuantity):
@@ -95,8 +94,8 @@ class SqlServerTests:
             product = ProductServ.objects.using('sql-server').create(ProductName=name, ProductDescription="AddedByTest", Price=21.36,
                                              Supplier="None")
             idsToRemove.append(product.ProductId)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         self.removeRecordsSilently(idsToRemove)
         return test_result
 
@@ -111,8 +110,8 @@ class SqlServerTests:
             item = ProductServ.objects.using('sql-server').get(ProductId=id)
             item.ProductName = name
             item.save()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         self.removeRecordsSilently(addedIds)
         return test_result
 
@@ -122,8 +121,8 @@ class SqlServerTests:
         for i in tqdm(addedIds):
             now = datetime.now()
             ProductServ.objects.using('sql-server').filter(ProductId=i).delete()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         return test_result
 
     def searchTwoRelatedTables(self, samplesQuantity):
@@ -132,9 +131,9 @@ class SqlServerTests:
         for i in tqdm(range(samplesQuantity)):
             position = PositionServ.objects.using('sql-server').get(PositionId=random.randrange(1, positionsCount)).PositionName
             now = datetime.now()
-            result = EmployeeServ.objects.using('sql-server').filter(Position__PositionName=position)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [x for x in EmployeeServ.objects.using('sql-server').filter(Position__PositionName=position)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         return test_result
 
     def serchFourRelatedTables(self, samplesQuantity):
@@ -145,10 +144,9 @@ class SqlServerTests:
             positionToFind = PositionServ.objects.using('sql-server').get(PositionId=random.randrange(1, positionsCount)).PositionName
             storeCountryToFind = StoreServ.objects.using('sql-server').get(StoreId=random.randrange(1, storesCount)).Country
             now = datetime.now()
-            result = OrderServ.objects.using('sql-server').filter(Employee__Position__PositionName=positionToFind,
-                                          Store__Country=storeCountryToFind)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [x for x in OrderServ.objects.using('sql-server').filter(Employee__Position__PositionName=positionToFind, Store__Country=storeCountryToFind)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         return test_result
 
     def searchRecordsWhichDoesNotHaveConnection(self, samplesQuantity):
@@ -157,15 +155,15 @@ class SqlServerTests:
             if i%2 != 0:
                 now = datetime.now()
                 usedPosition =  set([position.Position_id for position in EmployeeServ.objects.using('sql-server').filter(Position__isnull=False)])
-                result = PositionServ.objects.using('sql-server').exclude(PositionId__in=usedPosition)
-                elapsed = now.microsecond // 1000
-                test_result.add_sample(elapsed)
+                result = [x for x in PositionServ.objects.using('sql-server').exclude(PositionId__in=usedPosition)]
+                elapsed = datetime.now()
+                test_result.add_sample((elapsed - now).microseconds / 1000)
             else:
                 now = datetime.now()
                 usedStores = set([order.Store_id for order in Order.objects.filter()])
-                result = StoreServ.objects.using('sql-server').exclude(StoreId__in=usedStores)
-                elapsed = now.microsecond // 1000
-                test_result.add_sample(elapsed)
+                result = [x for x in StoreServ.objects.using('sql-server').exclude(StoreId__in=usedStores)]
+                elapsed = datetime.now()
+                test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def searchWithSubQuery(self, samplesQuantity):
@@ -174,9 +172,9 @@ class SqlServerTests:
         for i in tqdm(range(samplesQuantity)):
             country = random.choice(countries)
             now = datetime.now()
-            OrderServ.objects.using('sql-server').filter(Client__Country=country)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [x for x in OrderServ.objects.using('sql-server').filter(Client__Country=country)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def removeRelatedRecords(self, samplesQuantity):
@@ -191,6 +189,6 @@ class SqlServerTests:
             now = datetime.now()
             object = Store.objects.using('sql-server').get(StoreId=store.StoreId)
             object.delete()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed-now).microseconds/1000)
         return test_result

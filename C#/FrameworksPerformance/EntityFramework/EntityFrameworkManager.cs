@@ -269,13 +269,13 @@ namespace EntityFramework
                     if (i % 2 == 0)
                     {
                         sw.Start();
-                        var _ = _context.Positions.Where(x => !x.Employees.Any());
+                        var _ = _context.Positions.Where(x => !x.Employees.Any()).ToArray();
                         sw.Stop();
                     }
                     else
                     {
                         sw.Start();
-                        var _ = _context.Stores.Where(x => !x.Orders.Any());
+                        var _ = _context.Stores.Where(x => !x.Orders.Any()).ToArray();
                         sw.Stop();
                     }
                     progress.Report((double)i / samplesQuantity);
@@ -300,7 +300,7 @@ namespace EntityFramework
                     var countryToSearch = countries.ElementAt(_random.Next(countries.Count()));
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
-                    var _ = _context.Orders.Where(x => x.Client.Country == countryToSearch);
+                    var _ = _context.Orders.Where(x => x.Client.Country == countryToSearch).ToArray();
                     sw.Stop();
                     progress.Report((double)i / samplesQuantity);
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);

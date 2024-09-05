@@ -33,8 +33,8 @@ class SqliteTests:
             id = random.randrange(1, ordersCount)
             now = datetime.now()
             item = Employee.objects.get(EmployeeId=id)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def setOfDataSearch(self, samplesQuantity):
@@ -43,9 +43,9 @@ class SqliteTests:
         for i in tqdm(range(samplesQuantity)):
             id = random.randrange(1, positionsCount)
             now = datetime.now()
-            item = Employee.objects.filter(Position_id=id)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            item = [x for x in Employee.objects.filter(Position_id=id)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def setOfDataWithIsNullSearch(self, samplesQuantity):
@@ -55,34 +55,34 @@ class SqliteTests:
             match table:
                 case TableWithNull.ClientPhone:
                     now = datetime.now()
-                    Client.objects.filter(PhoneNumber__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Client.objects.filter(PhoneNumber__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.ClientCountry:
                     now = datetime.now()
-                    Client.objects.filter(Country__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Client.objects.filter(Country__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.EmployeesPhone:
                     now = datetime.now()
-                    Employee.objects.filter(PhoneNumber__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Employee.objects.filter(PhoneNumber__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.EmployeesPositionId:
                     now = datetime.now()
-                    Employee.objects.filter(Position_id__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Employee.objects.filter(Position_id__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.Orders:
                     now = datetime.now()
-                    Order.objects.filter(OrderDate__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Order.objects.filter(OrderDate__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
                 case TableWithNull.Products:
                     now = datetime.now()
-                    Order.objects.filter(ProductDescription__isnull=True)
-                    elapsed = now.microsecond // 1000
-                    test_result.add_sample(elapsed)
+                    result = [x for x in Order.objects.filter(ProductDescription__isnull=True)]
+                    elapsed = datetime.now()
+                    test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def addRecords(self, samplesQuantity):
@@ -95,8 +95,8 @@ class SqliteTests:
             product = Product.objects.create(ProductName=name, ProductDescription="AddedByTest", Price=21.36,
                                              Supplier="None")
             idsToRemove.append(product.ProductId)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         self.removeRecordsSilently(idsToRemove)
         return test_result
 
@@ -111,8 +111,8 @@ class SqliteTests:
             item = Product.objects.get(ProductId=id)
             item.ProductName = name
             item.save()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         self.removeRecordsSilently(addedIds)
         return test_result
 
@@ -122,8 +122,8 @@ class SqliteTests:
         for i in tqdm(addedIds):
             now = datetime.now()
             Product.objects.filter(ProductId=i).delete()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def searchTwoRelatedTables(self, samplesQuantity):
@@ -132,9 +132,9 @@ class SqliteTests:
         for i in tqdm(range(samplesQuantity)):
             position = Position.objects.get(PositionId=random.randrange(1, positionsCount)).PositionName
             now = datetime.now()
-            result = Employee.objects.filter(Position__PositionName=position)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [x for x in Employee.objects.filter(Position__PositionName=position)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def serchFourRelatedTables(self, samplesQuantity):
@@ -145,10 +145,10 @@ class SqliteTests:
             positionToFind = Position.objects.get(PositionId=random.randrange(1, positionsCount)).PositionName
             storeCountryToFind = Store.objects.get(StoreId=random.randrange(1, storesCount)).Country
             now = datetime.now()
-            result = Order.objects.filter(Employee__Position__PositionName=positionToFind,
-                                          Store__Country=storeCountryToFind)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [ x for x in Order.objects.filter(Employee__Position__PositionName=positionToFind,
+                                          Store__Country=storeCountryToFind)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def searchRecordsWhichDoesNotHaveConnection(self, samplesQuantity):
@@ -157,15 +157,15 @@ class SqliteTests:
             if i%2 != 0:
                 now = datetime.now()
                 usedPosition =  set([position.Position_id for position in Employee.objects.filter(Position__isnull=False)])
-                result = Position.objects.exclude(PositionId__in=usedPosition)
-                elapsed = now.microsecond // 1000
-                test_result.add_sample(elapsed)
+                result = [x for x in Position.objects.exclude(PositionId__in=usedPosition)]
+                elapsed = datetime.now()
+                test_result.add_sample((elapsed - now).microseconds / 1000)
             else:
                 now = datetime.now()
                 usedStores = set([order.Store_id for order in Order.objects.filter()])
-                result = Store.objects.exclude(StoreId__in=usedStores)
-                elapsed = now.microsecond // 1000
-                test_result.add_sample(elapsed)
+                result = [x for x in Store.objects.exclude(StoreId__in=usedStores)]
+                elapsed = datetime.now()
+                test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def searchWithSubQuery(self, samplesQuantity):
@@ -174,9 +174,9 @@ class SqliteTests:
         for i in tqdm(range(samplesQuantity)):
             country = random.choice(countries)
             now = datetime.now()
-            result = Order.objects.filter(Client__Country=country)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            result = [ x for x in Order.objects.filter(Client__Country=country)]
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def removeRelatedRecords(self, samplesQuantity):
@@ -190,6 +190,6 @@ class SqliteTests:
             order = Order.objects.create(Employee=employee, Store=store, Client=client, OrderDate=str(datetime.now()), OrderDetails=orderXml, TotalCost = 998)
             now = datetime.now()
             Store.objects.filter(StoreId=store.StoreId).delete()
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result

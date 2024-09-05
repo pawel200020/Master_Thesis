@@ -80,27 +80,26 @@
       "MinTimeElapsed": 29.6369,
       "VarianceTimeElapsed": 32.08431021373208,
       "TotalTimeElapsed": 430.47064940000064
-    },
+    },{
+  "Activity": "SearchRecordsWhichDoesNotHaveConnection",
+  "AverageTimeElapsed": 29.66146409,
+  "MedianTimeElapsed": 52.697900000000004,
+  "StandardDeviationTimeElapsed": 30.632986970510533,
+  "MaxTimeElapsed": 1505.0799,
+  "MinTimeElapsed": 2.0443,
+  "VarianceTimeElapsed": 938.3798907354682,
+  "TotalTimeElapsed": 296.6146409
+}
     {
-      "Activity": "SearchRecordsWhichDoesNotHaveConnection",
-      "AverageTimeElapsed": 0.002324379999999708,
-      "MedianTimeElapsed": 0.0018,
-      "StandardDeviationTimeElapsed": 0.017595082162559773,
-      "MaxTimeElapsed": 1.7556,
-      "MinTimeElapsed": 0.0016,
-      "VarianceTimeElapsed": 0.00030958691630722914,
-      "TotalTimeElapsed": 0.023243799999997084
-    },
-    {
-      "Activity": "SearchWithSubQuery",
-      "AverageTimeElapsed": 0.00257648999999984,
-      "MedianTimeElapsed": 0.0022,
-      "StandardDeviationTimeElapsed": 0.004961926274254289,
-      "MaxTimeElapsed": 0.3575,
-      "MinTimeElapsed": 0.0021,
-      "VarianceTimeElapsed": 2.4620712351135044E-05,
-      "TotalTimeElapsed": 0.025764899999998397
-    },
+  "Activity": "SearchWithSubQuery",
+  "AverageTimeElapsed": 55.87796428999997,
+  "MedianTimeElapsed": 52.036950000000004,
+  "StandardDeviationTimeElapsed": 25.378666300062687,
+  "MaxTimeElapsed": 408.2817,
+  "MinTimeElapsed": 25.4311,
+  "VarianceTimeElapsed": 644.0767031699374,
+  "TotalTimeElapsed": 558.7796428999998
+},
     {
       "Activity": "RemoveRelatedRecords",
       "AverageTimeElapsed": 77.7075788000002,
