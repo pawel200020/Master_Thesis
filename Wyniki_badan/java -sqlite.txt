@@ -24,9 +24,9 @@ Result
    "TotalTimeElapsed":11297.0,
 }
           {
-   "Activity":SingleRecordSearch,
+   "Activity":SingleRecordSearch, - is null
    "AverageTimeElapsed":14.3885,
-   "MedianTimeElapsed":0.0,
+   "MedianTimeElapsed":1.0,
    "StandardDeviationTimeElapsed":38.711282176518424,
    "MaxTimeElapsed":2608.0,
    "MinTimeElapsed":0.0,

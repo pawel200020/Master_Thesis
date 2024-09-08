@@ -1,4 +1,4 @@
-{!join from=id_int to=favourite_product fromIndex=Products}id:2245
+{!join from=id_int to=favourite_product fromIndex=Products}id:7178
 {!join from=id_int to=favourite_product fromIndex=Products}name:*
 fq
 https://solr.apache.org/guide/solr/latest/query-guide/block-join-query-parser.html

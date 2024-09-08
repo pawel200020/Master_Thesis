@@ -15,5 +15,6 @@ namespace Common.Facades
         string AddRecords(int samplesQuantity);
         string EditRecords(int samplesQuantity);
         string DeleteRecords(int samplesQuantity);
+        string SearchTwoRelatedTables(int samplesQuantity);
     }
 }

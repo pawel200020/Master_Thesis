@@ -24,6 +24,8 @@ D - Set of records search with isNull command
 E - Adding single records
 F - Edit single record
 G - Delete single record
+
+H* - Search two related tables
 ";
         protected virtual string NumberOfRepetitions => "\nNumber of repetitions: ";
         protected override string GetResult(ConsoleKeyInfo input, int samples) => input.Key switch
@@ -35,6 +37,7 @@ G - Delete single record
             ConsoleKey.E => _frameworkTestsFacade.AddRecords(samples),
             ConsoleKey.F => _frameworkTestsFacade.EditRecords(samples),
             ConsoleKey.G => _frameworkTestsFacade.DeleteRecords(samples),
+            ConsoleKey.H => _frameworkTestsFacade.SearchTwoRelatedTables(samples),
             _ => "Wrong Command"
         };
     }

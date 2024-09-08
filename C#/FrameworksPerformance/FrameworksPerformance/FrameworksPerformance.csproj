@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DatabaseFrameworkPerfTests\DatabaseFrameworkPerfTests.csproj" />
     <ProjectReference Include="..\EntityFramework\EntityFramework.csproj" />
     <ProjectReference Include="..\EntityFrameworkSqlite\EntityFrameworkSqlite.csproj" />
     <ProjectReference Include="..\NHibernateSql\NHibernateSql.csproj" />

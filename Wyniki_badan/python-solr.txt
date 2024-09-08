@@ -1,0 +1,63 @@
+"Language": "Python"
+"Results": [{
+    "Activity": singleRecordSearch,
+    "AverageTimeElapsed": 2.8937209,
+    "MedianTimeElapsed": 2.998,
+    "StandardDeviationTimeElapsed": 0.6209051523406696,
+    "MaxTimeElapsed": 12.003,
+    "MinTimeElapsed": 1.604,
+    "VarianceTimeElapsed": 0.38552320820319,
+    "TotalTimeElapsed": 28937.209,
+}
+{
+    "Activity": setOfDataSearch,
+    "AverageTimeElapsed": 2.8323986,
+    "MedianTimeElapsed": 2.999,
+    "StandardDeviationTimeElapsed": 0.6226409258296792,
+    "MaxTimeElapsed": 39.648,
+    "MinTimeElapsed": 1.527,
+    "VarianceTimeElapsed": 0.38768172251804006,
+    "TotalTimeElapsed": 28323.985999999997,
+}
+{
+    "Activity": setOfDataWithIsNullSearch,
+    "AverageTimeElapsed": 20.900449,
+    "MedianTimeElapsed": 20.002,
+    "StandardDeviationTimeElapsed": 3.6121066600806517,
+    "MaxTimeElapsed": 68.003,
+    "MinTimeElapsed": 16.951,
+    "VarianceTimeElapsed": 13.047314523799,
+    "TotalTimeElapsed": 209004.49,
+}
+{
+    "Activity": addRecords,
+    "AverageTimeElapsed": 105.99491119999999,
+    "MedianTimeElapsed": 107.0,
+    "StandardDeviationTimeElapsed": 34.957877383632926,
+    "MaxTimeElapsed": 942.856,
+    "MinTimeElapsed": 44.001,
+    "VarianceTimeElapsed": 1222.0531911691146,
+    "TotalTimeElapsed": 1059949.112,
+}
+{
+    "Activity": editRecords,
+    "AverageTimeElapsed": 147.37337659999997,
+    "MedianTimeElapsed": 152.4385,
+    "StandardDeviationTimeElapsed": 35.508384162808255,
+    "MaxTimeElapsed": 799.596,
+    "MinTimeElapsed": 59.327,
+    "VarianceTimeElapsed": 1260.8453458535723,
+    "TotalTimeElapsed": 1473733.7659999998,
+}
+{
+    "Activity": deleteRecords,
+    "AverageTimeElapsed": 42.150559799999996,
+    "MedianTimeElapsed": 38.835,
+    "StandardDeviationTimeElapsed": 13.084914417252563,
+    "MaxTimeElapsed": 197.276,
+    "MinTimeElapsed": 23.997,
+    "VarianceTimeElapsed": 171.21498530682396,
+    "TotalTimeElapsed": 421505.598,
+}
+     ]
+}

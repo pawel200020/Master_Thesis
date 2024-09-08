@@ -1,6 +1,8 @@
 package org.dbFrameworks.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Stores {
 
     @OneToMany
     @JoinColumn(name="StoreId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Orders> Orders;
 
     public String getCountry() {

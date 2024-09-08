@@ -161,13 +161,13 @@ namespace SolrEngine
                             new AtomicUpdateSpec(ProductSolrFields[nameof(Product.Description)], AtomicUpdateType.Set,
                                 $"Edited value set for this by iteration {i}")
                         });
+                    _solrProducts.Commit();
                     sw.Stop();
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
                     progress.Report((double)i / samplesQuantity);
                 }
 
             }
-            _solrProducts.Commit();
             _solrProducts.Delete(addedIds);
             _solrProducts.Commit();
             return testResult;
@@ -197,6 +197,32 @@ namespace SolrEngine
             return testResult;
         }
 
+        public TestResult SearchTwoRelatedTables(int samplesQuantity)
+        {
+            var testResult = new TestResult(samplesQuantity, nameof(SearchTwoRelatedTables));
+
+            var idsToSearch = ContentSearch<Client>("*", [nameof(Client.Id)], ClientSolrFields,
+                _clientDefaultResultFields,
+                _solrClients).Select(x => x.FavouriteProduct).Distinct();
+            using (var progress = new ProgressBar())
+            {
+                for (int i = 0; i < samplesQuantity; i++)
+                {
+                    var idToSearch = idsToSearch.ElementAt(_random.Next(idsToSearch.Count() - 1));
+                    string q = $"{{!join from=id_int to=favourite_product fromIndex=Products}}id:{idToSearch}";
+                    var sw = new Stopwatch();
+                    sw.Start();
+                    var result = ExecuteQuery<Client>(q,
+                        _clientDefaultResultFields,
+                        _solrClients).ToArray();
+                    sw.Stop();
+                    testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+                    progress.Report((double)i / samplesQuantity);
+                }
+            }
+
+            return testResult;
+        }
 
         private static readonly Dictionary<string, string> ProductSolrFields = new()
         {
@@ -295,6 +321,19 @@ namespace SolrEngine
             extraParams.Add("wt", "xml");
             var qf = string.Join(" ", solrFields);
             extraParams.Add("qf", qf);
+            opt.ExtraParams = extraParams;
+            return solr.Query(phrase, opt);
+        }
+
+        private IEnumerable<T> ExecuteQuery<T>(string phrase,
+            string[] resultFields,
+            ISolrOperations<T> solr)
+        {
+            var opt = new QueryOptions();
+            opt.Fields = resultFields;
+            var extraParams = new Dictionary<string, string>();
+            extraParams.Add("defType", "lucene");
+            extraParams.Add("wt", "xml");
             opt.ExtraParams = extraParams;
             return solr.Query(phrase, opt);
         }

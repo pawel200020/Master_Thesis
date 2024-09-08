@@ -1,25 +1,24 @@
+Result
+----------------------
 {
-   "Language": Java
-   "Results": [
-          {
    "Activity":SingleRecordSearch,
-   "AverageTimeElapsed":1.0623,
+   "AverageTimeElapsed":0.8772,
    "MedianTimeElapsed":1.0,
-   "StandardDeviationTimeElapsed":0.7165324207598752,
-   "MaxTimeElapsed":34.0,
+   "StandardDeviationTimeElapsed":0.47531059319144153,
+   "MaxTimeElapsed":10.0,
    "MinTimeElapsed":0.0,
-   "VarianceTimeElapsed":0.5134187100000068,
-   "TotalTimeElapsed":10.623,
+   "VarianceTimeElapsed":0.22592016000000004,
+   "TotalTimeElapsed":8.772,
 }
-          {
+{
    "Activity":SetOfDataSearch,
-   "AverageTimeElapsed":0.8823,
+   "AverageTimeElapsed":0.908,
    "MedianTimeElapsed":1.0,
-   "StandardDeviationTimeElapsed":10.673839361260786,
-   "MaxTimeElapsed":1067.0,
+   "StandardDeviationTimeElapsed":0.4088226999568442,
+   "MaxTimeElapsed":14.0,
    "MinTimeElapsed":0.0,
-   "VarianceTimeElapsed":113.93084671000005,
-   "TotalTimeElapsed":8.823,
+   "VarianceTimeElapsed":0.16713600000000386,
+   "TotalTimeElapsed":9.08,
 }
           {
    "Activity":SetOfDataWithIsNullSearch,

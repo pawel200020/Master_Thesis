@@ -1,0 +1,65 @@
+{
+  "Language": "C#",
+  "Results": [
+    {
+      "Activity": "SingleRecordSearch",
+      "AverageTimeElapsed": 1.5306162000000012,
+      "MedianTimeElapsed": 1.48285,
+      "StandardDeviationTimeElapsed": 0.32247568483885974,
+      "MaxTimeElapsed": 12.6411,
+      "MinTimeElapsed": 0.8737,
+      "VarianceTimeElapsed": 0.1039905673122916,
+      "TotalTimeElapsed": 15.306162000000013
+    },
+    {
+      "Activity": "SetOfDataSearch",
+      "AverageTimeElapsed": 1.500702420000004,
+      "MedianTimeElapsed": 1.4158,
+      "StandardDeviationTimeElapsed": 0.44677029666478757,
+      "MaxTimeElapsed": 24.8081,
+      "MinTimeElapsed": 0.9429,
+      "VarianceTimeElapsed": 0.19960369798194227,
+      "TotalTimeElapsed": 15.00702420000004
+    },
+    {
+      "Activity": "SetOfDataWithIsNullSearch",
+      "AverageTimeElapsed": 46.271981,
+      "MedianTimeElapsed": 42.50635,
+      "StandardDeviationTimeElapsed": 10.74780633002343,
+      "MaxTimeElapsed": 135.0825,
+      "MinTimeElapsed": 35.9986,
+      "VarianceTimeElapsed": 115.5153409076917,
+      "TotalTimeElapsed": 462.71981
+    },
+    {
+      "Activity": "AddRecords",
+      "AverageTimeElapsed": 110.47480295999975,
+      "MedianTimeElapsed": 109.2941,
+      "StandardDeviationTimeElapsed": 85.62546986873897,
+      "MaxTimeElapsed": 4070.7323,
+      "MinTimeElapsed": 46.9018,
+      "VarianceTimeElapsed": 7331.721090242327,
+      "TotalTimeElapsed": 1104.7480295999974
+    },
+{
+  "Activity": "EditRecords",
+  "AverageTimeElapsed": 106.31602417000029,
+  "MedianTimeElapsed": 108.7331,
+  "StandardDeviationTimeElapsed": 27.40394011229467,
+  "MaxTimeElapsed": 1279.2691,
+  "MinTimeElapsed": 48.5692,
+  "VarianceTimeElapsed": 750.9759336782328,
+  "TotalTimeElapsed": 1063.1602417000029
+}
+    {
+      "Activity": "DeleteRecords",
+      "AverageTimeElapsed": 35.82110120000013,
+      "MedianTimeElapsed": 35.82415,
+      "StandardDeviationTimeElapsed": 5.802928298203105,
+      "MaxTimeElapsed": 114.6442,
+      "MinTimeElapsed": 20.136,
+      "VarianceTimeElapsed": 33.67397683408639,
+      "TotalTimeElapsed": 358.2110120000013
+    }
+  ]
+}

@@ -46,8 +46,8 @@ class PySolrTests:
             idToFind = random.randrange(1, productsCount)
             now = datetime.now()
             result = self.solrProducts.search(idToFind,fl='id name category price description', qf='id',defType='edismax').docs
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def setOfDataSearch(self, samplesQuantity):
@@ -57,8 +57,8 @@ class PySolrTests:
             nameToFind = random.choice(names)
             now = datetime.now()
             result = self.solrClients.search(nameToFind,fl="id name age salary description favourite_product recent_bought_products birth_date has_children_b how_many_cats_i has_partner_b", qf="name",defType="edismax", rows=10000).docs
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def setOfDataWithIsNullSearch(self,samplesQuantity):
@@ -68,8 +68,8 @@ class PySolrTests:
             now = datetime.now()
             query = "NOT {}:*".format(field)
             result = self.solrClients.search(query,fl="id name age salary description favourite_product recent_bought_products birth_date has_children_b how_many_cats_i has_partner_b", qf="name",defType="edismax",  rows=10000).docs
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result
 
     def addRecords (self, samplesQuantity):
@@ -92,8 +92,8 @@ class PySolrTests:
                     "description": "addedByTests"
                 }
             ])
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
             idsToRemove.append(id)
         self.removeRecordsSilently(idsToRemove)
         return test_result
@@ -106,8 +106,8 @@ class PySolrTests:
             now = datetime.now()
             doc = {'id': idToEdit, 'description' : "Edited value set for this by iteration {}".format(i)}
             self.solrProducts.add([doc],fieldUpdates={'description':'set'})
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         self.removeRecordsSilently(addedIds)
         return test_result
 
@@ -117,6 +117,6 @@ class PySolrTests:
         for i in tqdm(addedIds):
             now = datetime.now()
             self.solrProducts.delete(i)
-            elapsed = now.microsecond // 1000
-            test_result.add_sample(elapsed)
+            elapsed = datetime.now()
+            test_result.add_sample((elapsed - now).microseconds / 1000)
         return test_result

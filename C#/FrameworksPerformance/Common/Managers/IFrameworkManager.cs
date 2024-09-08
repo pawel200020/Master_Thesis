@@ -8,5 +8,6 @@
         TestResult AddRecords(int samplesQuantity);
         TestResult EditRecords(int samplesQuantity);
         TestResult DeleteRecords(int samplesQuantity);
+        TestResult SearchTwoRelatedTables(int samplesQuantity);
     }
 }

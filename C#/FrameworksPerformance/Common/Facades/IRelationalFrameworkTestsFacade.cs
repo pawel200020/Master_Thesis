@@ -8,7 +8,7 @@ namespace Common.Facades
 {
     public interface IRelationalFrameworkTestsFacade : IFrameworkTestsFacade
     {
-        string SearchTwoRelatedTables(int samplesQuantity);
+        //string SearchTwoRelatedTables(int samplesQuantity);
         string SearchFourRelatedTables(int samplesQuantity);
         string SearchRecordsWhichDoesNotHaveConnection(int samplesQuantity);
         string SearchWithSubQuery(int samplesQuantity);

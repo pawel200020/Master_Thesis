@@ -83,24 +83,24 @@
     },
     {
       "Activity": "SearchRecordsWhichDoesNotHaveConnection",
-      "AverageTimeElapsed": 0.0024221399999996523,
-      "MedianTimeElapsed": 0.0019,
-      "StandardDeviationTimeElapsed": 0.020144106788940276,
-      "MaxTimeElapsed": 1.8591,
-      "MinTimeElapsed": 0.0017,
-      "VarianceTimeElapsed": 0.0004057850383242297,
-      "TotalTimeElapsed": 0.024221399999996524
+      "AverageTimeElapsed": 63.15431117999992,
+      "MedianTimeElapsed": 116.32995,
+      "StandardDeviationTimeElapsed": 63.34699622468824,
+      "MaxTimeElapsed": 1016.6603,
+      "MinTimeElapsed": 0.6011,
+      "VarianceTimeElapsed": 4012.841930690666,
+       "TotalTimeElapsed": 631.5431117999992
     },
-    {
-      "Activity": "SearchWithSubQuery",
-      "AverageTimeElapsed": 0.002553009999999783,
-      "MedianTimeElapsed": 0.0022,
-      "StandardDeviationTimeElapsed": 0.020834472838681273,
-      "MaxTimeElapsed": 2.0808,
-      "MinTimeElapsed": 0.002,
-      "VarianceTimeElapsed": 0.0004340752584657477,
-      "TotalTimeElapsed": 0.025530099999997828
-    },
+{
+  "Activity": "SearchWithSubQuery",
+  "AverageTimeElapsed": 85.38567730000013,
+  "MedianTimeElapsed": 82.46395000000001,
+  "StandardDeviationTimeElapsed": 37.22544595391633,
+  "MaxTimeElapsed": 1248.5627,
+  "MinTimeElapsed": 77.3504,
+  "VarianceTimeElapsed": 1385.7338264679454,
+  "TotalTimeElapsed": 85.38567730000013
+},
     {
       "Activity": "RemoveRelatedRecords",
       "AverageTimeElapsed": 293.8681488399989,

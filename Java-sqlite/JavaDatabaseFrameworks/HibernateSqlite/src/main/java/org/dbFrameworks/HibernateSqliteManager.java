@@ -79,7 +79,7 @@ public class HibernateSqliteManager implements IRelationalFrameworkManager {
         var testResult = new TestResult(samplesQuantity, "SingleRecordSearch");
         EntityManager em = contextFactory.createEntityManager();
         var tablesWithNullQuantity = TableWithNull.values().length;
-        try (ProgressBar pb = new ProgressBar("SingleRecordSearch", samplesQuantity)) {
+        try (ProgressBar pb = new ProgressBar("SetOfDataWithIsNullSearch", samplesQuantity)) {
             for (var i = 0; i < samplesQuantity; i++) {
                 var table = TableWithNull.values()[ThreadLocalRandom.current().nextInt(1, tablesWithNullQuantity)];
                 switch (table) {
@@ -378,6 +378,7 @@ public class HibernateSqliteManager implements IRelationalFrameworkManager {
                 Instant start = Instant.now();
                 em.getTransaction().begin();
                 em.remove(s);
+                em.remove(o);
                 em.getTransaction().commit();
 
                 Instant finish = Instant.now();

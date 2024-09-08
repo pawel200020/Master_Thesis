@@ -22,6 +22,7 @@ namespace Common.Facades
             testsResults.Add(_manager.AddRecords(samplesQuantity));
             testsResults.Add(_manager.EditRecords(samplesQuantity));
             testsResults.Add(_manager.DeleteRecords(samplesQuantity));
+            testsResults.Add(_manager.SearchTwoRelatedTables(samplesQuantity));
 
             _jsonManager.SaveTestResultAsFile(fileName, testsResults);
             return _jsonManager.ConvertToJson(testsResults);
@@ -38,5 +39,7 @@ namespace Common.Facades
         public string EditRecords(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.EditRecords(samplesQuantity));
 
         public string DeleteRecords(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.DeleteRecords(samplesQuantity));
+
+        public string SearchTwoRelatedTables(int samplesQuantity) => _jsonManager.ConvertToJson(_manager.SearchTwoRelatedTables(samplesQuantity));
     }
 }
