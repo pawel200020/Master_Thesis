@@ -1,0 +1,207 @@
+100 000
+{sql
+  "Activity": "SingleRecordSearch",
+  "AverageTimeElapsed": 1.5028786999999917,
+  "MedianTimeElapsed": 1.3268499999999999,
+  "StandardDeviationTimeElapsed": 13.241430711933242,
+  "MaxTimeElapsed": 1323.3966,
+  "MinTimeElapsed": 0.0005,
+  "VarianceTimeElapsed": 175.33548729892888,
+  "TotalTimeElapsed": 15.028786999999916
+}
+
+{
+  "Activity": "SingleRecordSearch",
+  "AverageTimeElapsed": 1.5869469100000027,
+  "MedianTimeElapsed": 1.42305,
+  "StandardDeviationTimeElapsed": 13.019438039243262,
+  "MaxTimeElapsed": 1303.1448,
+  "MinTimeElapsed": 0.9323,
+  "VarianceTimeElapsed": 169.50576685769445,
+  "TotalTimeElapsed": 15.869469100000027
+}
+
+
+Result
+----------------------
+{
+  "Activity": "SetOfDataSQL",
+  "AverageTimeElapsed": 2.811489270000001,
+  "MedianTimeElapsed": 2.44305,
+  "StandardDeviationTimeElapsed": 14.920276009970125,
+  "MaxTimeElapsed": 1485.733,
+  "MinTimeElapsed": 1.7103,
+  "VarianceTimeElapsed": 222.61463621369006,
+  "TotalTimeElapsed": 28.11489270000001
+}
+
+{
+  "Activity": "SetOfDataSearchSolr
+  "AverageTimeElapsed": 44.142773200000086,
+  "MedianTimeElapsed": 41.284000000000006,
+  "StandardDeviationTimeElapsed": 41.53832085560612,
+  "MaxTimeElapsed": 1346.6194,
+  "MinTimeElapsed": 37.5027,
+  "VarianceTimeElapsed": 1725.4320995032826,
+  "TotalTimeElapsed": 44.142773200000086
+}
+
+
+----------------------
+{
+  "Activity": "SearchTwoRelatedTablesSQL",
+  "AverageTimeElapsed": 21.56269760000002,
+  "MedianTimeElapsed": 21.96365,
+  "StandardDeviationTimeElapsed": 5.9660367145378395,
+  "MaxTimeElapsed": 106.2094,
+  "MinTimeElapsed": 11.9406,
+  "VarianceTimeElapsed": 35.59359407921345,
+  "TotalTimeElapsed": 21.56269760000002
+}
+{
+  "Activity": "SearchTwoRelatedTables",
+  "AverageTimeElapsed": 2.020872500000001,
+  "MedianTimeElapsed": 1.9196499999999999,
+  "StandardDeviationTimeElapsed": 0.6449081690910036,
+  "MaxTimeElapsed": 6.091,
+  "MinTimeElapsed": 1.1823,
+  "VarianceTimeElapsed": 0.4159065465603104,
+  "TotalTimeElapsed": 2.020872500000001
+}
+1 000 000
+{
+  "Activity": "SingleRecordSearchSQL",
+  "AverageTimeElapsed": 1.5644969999999985,
+  "MedianTimeElapsed": 1.3413499999999998,
+  "StandardDeviationTimeElapsed": 14.44928370090348,
+  "MaxTimeElapsed": 1445.6468,
+  "MinTimeElapsed": 0.0015,
+  "VarianceTimeElapsed": 208.78179946919497,
+  "TotalTimeElapsed": 15.644969999999985
+}
+{
+  "Activity": "SetOfDataSQL",
+  "AverageTimeElapsed": 41.01683965999986,
+  "MedianTimeElapsed": 30.3024,
+  "StandardDeviationTimeElapsed": 27.91932943034223,
+  "MaxTimeElapsed": 1392.9984,
+  "MinTimeElapsed": 15.8641,
+  "VarianceTimeElapsed": 779.4889558399739,
+  "TotalTimeElapsed": 410.1683965999986
+}
+
+{
+  "Activity": "SearchTwoRelatedTablesSQL",
+  "AverageTimeElapsed": 36.27987774999991,
+  "MedianTimeElapsed": 35.15715,
+  "StandardDeviationTimeElapsed": 3.9755549064156246,
+  "MaxTimeElapsed": 92.7436,
+  "MinTimeElapsed": 30.1798,
+  "VarianceTimeElapsed": 15.805036813925346,
+  "TotalTimeElapsed": 362.7987774999992
+}
+{
+  "Activity": "SingleRecordSearchSOLR",
+  "AverageTimeElapsed": 3.6085331999999966,
+  "MedianTimeElapsed": 2.36805,
+  "StandardDeviationTimeElapsed": 37.33275786979578,
+  "MaxTimeElapsed": 1182.8888,
+  "MinTimeElapsed": 1.6091,
+  "VarianceTimeElapsed": 1393.7348101647983,
+  "TotalTimeElapsed": 3.6085331999999966
+}
+{
+  "Activity": "SetOfDataSearchSOLR",
+  "AverageTimeElapsed": 88.57672980000005,
+  "MedianTimeElapsed": 84.6976,
+  "StandardDeviationTimeElapsed": 50.257632472565085,
+  "MaxTimeElapsed": 1657.8177,
+  "MinTimeElapsed": 79.2442,
+  "VarianceTimeElapsed": 2525.8296217474285,
+  "TotalTimeElapsed": 88.57672980000005
+}
+{
+  "Activity": "SearchTwoRelatedTablesSOLR",
+  "AverageTimeElapsed": 25.058104899999964,
+  "MedianTimeElapsed": 37.0801,
+  "StandardDeviationTimeElapsed": 19.993560941517337,
+  "MaxTimeElapsed": 106.331,
+  "MinTimeElapsed": 1.2915,
+  "VarianceTimeElapsed": 399.7424791221677,
+  "TotalTimeElapsed": 25.058104899999964
+}
+10 000 000
+{
+  "Activity": "SingleRecordSearchSQL",
+  "AverageTimeElapsed": 1.5883921799999987,
+  "MedianTimeElapsed": 1.3765,
+  "StandardDeviationTimeElapsed": 15.055813761193779,
+  "MaxTimeElapsed": 1506.5439,
+  "MinTimeElapsed": 0.0022,
+  "VarianceTimeElapsed": 226.67752801175195,
+  "TotalTimeElapsed": 15.883921799999987
+}
+
+{
+  "Activity": "SetOfDataSearchSQL",
+  "AverageTimeElapsed": 43.70547316999997,
+  "MedianTimeElapsed": 31.390050000000002,
+  "StandardDeviationTimeElapsed": 28.111216241447345,
+  "MaxTimeElapsed": 205.3463,
+  "MinTimeElapsed": 16.0426,
+  "VarianceTimeElapsed": 790.240478573413,
+  "TotalTimeElapsed": 437.0547316999997
+}
+
+{
+  "Activity": "SearchTwoRelatedTablesSQL",
+  "AverageTimeElapsed": 4463.912476499999,
+  "MedianTimeElapsed": 4902.5069,
+  "StandardDeviationTimeElapsed": 1457.9612807213925,
+  "MaxTimeElapsed": 5713.6536,
+  "MinTimeElapsed": 49.1982,
+  "VarianceTimeElapsed": 2125651.0960827633,
+  "TotalTimeElapsed": 892.7824952999998
+}
+{
+  "Activity": "SingleRecordSearchSOLR",
+  "AverageTimeElapsed": 1.6589382999999966,
+  "MedianTimeElapsed": 1.5936499999999998,
+  "StandardDeviationTimeElapsed": 0.416678730687946,
+  "MaxTimeElapsed": 10.0759,
+  "MinTimeElapsed": 1.1166,
+  "VarianceTimeElapsed": 0.17362116460771782,
+  "TotalTimeElapsed": 1.6589382999999966
+}
+--
+{
+  "Activity": "SingleRecordSearchsolr2",
+  "AverageTimeElapsed": 2.9655862399999986,
+  "MedianTimeElapsed": 1.4505499999999998,
+  "StandardDeviationTimeElapsed": 92.48171637105739,
+  "MaxTimeElapsed": 8175.3172,
+  "MinTimeElapsed": 0.9662,
+  "VarianceTimeElapsed": 8552.867862936704,
+  "TotalTimeElapsed": 29.655862399999986
+}
+{
+  "Activity": "SetOfDataSearchSOLR",
+  "AverageTimeElapsed": 520.4096547000005,
+  "MedianTimeElapsed": 491.9674,
+  "StandardDeviationTimeElapsed": 365.7094074699097,
+  "MaxTimeElapsed": 11498.7566,
+  "MinTimeElapsed": 453.9838,
+  "VarianceTimeElapsed": 133743.37071199247,
+  "TotalTimeElapsed": 520.4096547000005
+}
+
+{
+  "Activity": "SearchTwoRelatedTables",
+  "AverageTimeElapsed": 328.59607699999975,
+  "MedianTimeElapsed": 427.33770000000004,
+  "StandardDeviationTimeElapsed": 318.3571556350096,
+  "MaxTimeElapsed": 5757.5954,
+  "MinTimeElapsed": 1.1391,
+  "VarianceTimeElapsed": 101351.27854401371,
+  "TotalTimeElapsed": 328.59607699999975
+}

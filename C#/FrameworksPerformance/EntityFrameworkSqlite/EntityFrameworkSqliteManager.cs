@@ -15,7 +15,7 @@ namespace EntityFrameworkSqlite
 
         public TestResult SingleRecordSearch(int samplesQuantity)
         {
-            var rowCount = _context.Orders.Count() - 1;
+            var rowCount = 100100;
             var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
 
             using (var progress = new ProgressBar())
@@ -27,7 +27,7 @@ namespace EntityFrameworkSqlite
 
                     sw.Start();
 
-                    var _ = _context.Orders.Find(number);
+                    var _ = _context.Products.Find(number);
 
                     sw.Stop();
 
@@ -142,7 +142,7 @@ namespace EntityFrameworkSqlite
                     progress.Report((double)i / samplesQuantity);
                 }
             }
-            RemoveRecordsSilent();
+            //RemoveRecordsSilent();
             return testResult;
         }
 

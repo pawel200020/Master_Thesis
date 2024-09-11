@@ -15,4 +15,6 @@ internal class Product
     public double Price { get; set; }
     [SolrField("category")]
     public string Category { get; set; }
+    [SolrField("id_int")]
+    public int IdInt { get; set; }
 }

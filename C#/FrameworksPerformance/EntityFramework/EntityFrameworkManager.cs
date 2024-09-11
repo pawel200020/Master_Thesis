@@ -14,22 +14,24 @@ namespace EntityFramework
 
         public TestResult SingleRecordSearch(int samplesQuantity)
         {
-            var rowCount = _context.Orders.Count() - 1;
+            //var rowCount = 10000100;
+            var rowCount = 10000502;
             var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
 
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
                 {
-                    var number = _random.Next(rowCount) + 1;
+                    //var number = _random.Next(238142, rowCount);
+                    var number = _random.Next(1, rowCount);
                     Stopwatch sw = new Stopwatch();
 
                     sw.Start();
 
-                    var _ = _context.Orders.Find(number);
+                    var product = _context.Employees.Find(number);
 
                     sw.Stop();
-
+                    //var p = product.ProductId;
                     progress.Report((double)i / samplesQuantity);
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
                 }
@@ -40,24 +42,28 @@ namespace EntityFramework
 
         public TestResult SetOfDataSearch(int samplesQuantity)
         {
-            var positionsCount = _context.Positions.Count() - 1;
-            var testResult = new TestResult(samplesQuantity, nameof(SetOfDataSearch));
+            var rowCount = 10000100;
+            var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
+            var productNames = ReadData("Files/first_words.txt");
+
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
                 {
-                    var positionId = _random.Next(positionsCount) + 1;
+                    //var number = _random.Next(238142, rowCount);
+                    var name = productNames.ElementAt(_random.Next(productNames.Count()));
                     Stopwatch sw = new Stopwatch();
 
                     sw.Start();
 
-                    var _ = _context.Employees.Where(x => x.PositionId.HasValue && x.PositionId.Value == positionId).ToArray();
+                    var product = _context.Employees.Where(x => x.FirstName == name).Take(1000).ToArray();
 
                     sw.Stop();
-
+                    //var p = product.ProductId;
                     progress.Report((double)i / samplesQuantity);
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
                 }
+
             }
             return testResult;
         }
@@ -124,31 +130,71 @@ namespace EntityFramework
             return testResult;
         }
 
+        //public TestResult AddRecords(int samplesQuantity)
+        //{
+        //    var testResult = new TestResult(samplesQuantity, nameof(AddRecords));
+        //    var productNames = ReadData("Files/real_product_names.txt");
+        //    using (var progress = new ProgressBar())
+        //    {
+        //        for (int i = 0; i < samplesQuantity; i++)
+        //        {
+        //            var name = productNames.ElementAt(_random.Next(productNames.Count()));
+        //            Stopwatch sw = new();
+        //            sw.Start();
+        //            _context.Products.Add(new Product()
+        //            {
+        //                ProductName = name,
+        //                Price = (decimal)21.36,
+        //                ProductDescription = ProductDescription,
+        //                Supplier = "None"
+        //            });
+                   
+        //            sw.Stop();
+        //            testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+        //            progress.Report((double)i / samplesQuantity);
+        //        }
+        //        _context.SaveChanges();
+
+        //    }
+        //    //RemoveRecordsSilent();
+        //    return testResult;
+        //}
+
         public TestResult AddRecords(int samplesQuantity)
         {
             var testResult = new TestResult(samplesQuantity, nameof(AddRecords));
-            var productNames = ReadData("Files/real_product_names.txt");
+            var productNames = ReadData("Files/first_words.txt");
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
                 {
                     var name = productNames.ElementAt(_random.Next(productNames.Count()));
+                    var id = _random.Next(1000104) + 1;
                     Stopwatch sw = new();
                     sw.Start();
-                    _context.Products.Add(new Product()
+                    _context.Employees.Add(new Employee()
                     {
-                        ProductName = name,
-                        Price = (decimal)21.36,
-                        ProductDescription = ProductDescription,
-                        Supplier = "None"
+                        FirstName = name,
+                        LastName = "Doe",
+                        Address = "test",
+                        PositionId = id,
+                        PhoneNumber = "333444555"
                     });
-                    _context.SaveChanges();
+                    //_context.Positions.Add(new Position()
+                    //{
+                    //    PositionName = $"example {i + 1000105}",
+                    //    CarParkingPlace = "Inside",
+                    //    PositionBonus = 12
+                    //});
+
                     sw.Stop();
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
                     progress.Report((double)i / samplesQuantity);
                 }
+                _context.SaveChanges();
+
             }
-            RemoveRecordsSilent();
+            //RemoveRecordsSilent();
             return testResult;
         }
 
@@ -215,7 +261,7 @@ namespace EntityFramework
 
                     sw.Start();
 
-                    var _ = _context.Employees.Where(x => x.Position != null && x.Position.PositionName == positionToFind!.PositionName).ToArray();
+                    var _ = _context.Employees.Where(x => x.Position != null && x.Position.PositionName == positionToFind!.PositionName).Take(1).ToArray();
 
                     sw.Stop();
 

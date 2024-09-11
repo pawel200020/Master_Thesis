@@ -42,16 +42,16 @@ namespace SolrEngine
         public TestResult SingleRecordSearch(int samplesQuantity)
         {
             var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
-            var rows = (int)CountRows(ProductSolrFields[nameof(Product.Id)],
-                _solrProducts);
+            var rows = 1000000-1;
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
                 {
                     var idToSearch = _random.Next(rows) + 1;
                     var sw = new Stopwatch();
+                    string id = idToSearch.ToString();
                     sw.Start();
-                    var result = ContentSearch<Product>(idToSearch.ToString(), [nameof(Product.Id)], ProductSolrFields,
+                    var result = ContentSearch<Product>(id, [nameof(Product.Id)], ProductSolrFields,
                         _productDefaultResultFields,
                         _solrProducts);
                     sw.Stop();
@@ -62,6 +62,29 @@ namespace SolrEngine
 
             return testResult;
         }
+        //public TestResult SingleRecordSearch(int samplesQuantity)
+        //{
+        //    var testResult = new TestResult(samplesQuantity, nameof(SingleRecordSearch));
+        //    var rows = 1000100;
+        //    using (var progress = new ProgressBar())
+        //    {
+        //        for (int i = 0; i < samplesQuantity; i++)
+        //        {
+        //            var idToSearch = _random.Next(rows) + 1;
+        //            var sw = new Stopwatch();
+        //            string id = idToSearch.ToString();
+        //            sw.Start();
+        //            var result = ContentSearch<Product>(id, [nameof(Product.Id)], ProductSolrFields,
+        //                _productDefaultResultFields,
+        //                _solrProducts);
+        //            sw.Stop();
+        //            testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+        //            progress.Report((double)i / samplesQuantity);
+        //        }
+        //    }
+
+        //    return testResult;
+        //}
 
         public TestResult SetOfDataSearch(int samplesQuantity)
         {
@@ -70,12 +93,13 @@ namespace SolrEngine
             var namesQuantity = names.Count();
             using (var progress = new ProgressBar())
             {
+                
                 for (int i = 0; i < samplesQuantity; i++)
                 {
-                    var nameToSearch = names.ElementAt(_random.Next(namesQuantity));
+                    var nameToSearch = "Eco-Friendly*";
                     var sw = new Stopwatch();
                     sw.Start();
-                    var result = ContentSearch<Client>(nameToSearch, [nameof(Client.Name)], ClientSolrFields, _clientDefaultResultFields, _solrClients);
+                    var result = ContentSearch<Product>("added by test", [nameof(Product.Description)], ProductSolrFields, _productDefaultResultFields, _solrProducts).ToArray();
                     sw.Stop();
                     testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
                     progress.Report((double)i / samplesQuantity);
@@ -107,29 +131,71 @@ namespace SolrEngine
             return testResult;
         }
 
+        //public TestResult AddRecords(int samplesQuantity)
+        //{
+        //    var testResult = new TestResult(samplesQuantity, nameof(AddRecords));
+        //    var id = (int)CountRows(ProductSolrFields[nameof(Product.Id)], _solrProducts) + 1;
+        //    var categories = ReadData("Files/categories.txt");
+        //    List<string> idsToRemove = new();
+        //    using (var progress = new ProgressBar())
+        //    {
+        //        for (int i = 0; i < samplesQuantity; i++)
+        //        {
+        //            var category = categories.ElementAt(_random.Next(344));
+        //            var price = (double)_random.Next(9999999) / 100;
+        //            var sw = new Stopwatch();
+        //            sw.Start();
+        //            _solrProducts.Add(new Product()
+        //            {
+        //                Category = category,
+        //                Description = "added by test",
+        //                Id = id,
+        //                Name = $"Example product {i}",
+        //                Price = price,
+        //                IdInt = id
+        //            });
+
+        //            sw.Stop();
+        //            idsToRemove.Add(id.ToString());
+        //            id++;
+        //            testResult.AddMeasure(sw.Elapsed.TotalMilliseconds);
+        //            progress.Report((double)i / samplesQuantity);
+        //        }
+        //    }
+        //    _solrProducts.Commit();
+        //    //_solrProducts.Delete(idsToRemove);
+        //    //_solrProducts.Commit();
+        //    return testResult;
+        //}
+
         public TestResult AddRecords(int samplesQuantity)
         {
             var testResult = new TestResult(samplesQuantity, nameof(AddRecords));
-            var id = (int)CountRows(ProductSolrFields[nameof(Product.Id)], _solrProducts) + 1;
+            var id = (int)CountRows(ClientSolrFields[nameof(Client.Id)], _solrClients) + 1;
             var categories = ReadData("Files/categories.txt");
+            var productNames = ReadData("Files/first_words.txt");
             List<string> idsToRemove = new();
             using (var progress = new ProgressBar())
             {
                 for (int i = 0; i < samplesQuantity; i++)
                 {
-                    var category = categories.ElementAt(_random.Next(344));
-                    var price = (double)_random.Next(9999999) / 100;
+                    var name = productNames.ElementAt(_random.Next(productNames.Count()));
                     var sw = new Stopwatch();
                     sw.Start();
-                    _solrProducts.Add(new Product()
+                    _solrClients.Add(new Client()
                     {
-                        Category = category,
+                        Name = name,
+                        LastName = "Nowak",
+                        Salary = 1234,
+                        Age = 45,
+                        FavouriteProduct = _random.Next(1101099) + 1,
+                        BirthDate = DateTime.Now,
+                        RecentBought = ["High-Quality Books Laptop"],
                         Description = "added by test",
+
                         Id = id,
-                        Name = $"Example product {i}",
-                        Price = price,
                     });
-                    _solrProducts.Commit();
+
                     sw.Stop();
                     idsToRemove.Add(id.ToString());
                     id++;
@@ -137,9 +203,9 @@ namespace SolrEngine
                     progress.Report((double)i / samplesQuantity);
                 }
             }
-            
-            _solrProducts.Delete(idsToRemove);
-            _solrProducts.Commit();
+            _solrClients.Commit();
+            //_solrProducts.Delete(idsToRemove);
+            //_solrProducts.Commit();
             return testResult;
         }
 
@@ -179,7 +245,7 @@ namespace SolrEngine
             var testResult = new TestResult(samplesQuantity, nameof(DeleteRecords));
             int progressAsInt = 0;
             using (var progress = new ProgressBar())
-            {
+            { 
                 foreach (var id in addedIds)
                 {
                     var sw = new Stopwatch();
@@ -315,6 +381,7 @@ namespace SolrEngine
         {
             var solrFields = searchFields.Select(x => solrFieldsFromNames[x]).ToArray();
             var opt = new QueryOptions();
+            opt.Rows = 1000;
             opt.Fields = resultFields;
             var extraParams = new Dictionary<string, string>();
             extraParams.Add("defType", "edismax");
