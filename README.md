@@ -12,11 +12,8 @@ W ramach pracy, wykonam przegląd powszechnie stosowanych frameworków w języka
 - [X] Python
 
 ### Własny framework zaimplementuję w języku 
-- [ ] C#
+- [X] C#
 ### Link do Overleaf z pracą:
   - [Click](https://www.overleaf.com/project/6622366cf6afcb0be84f1ec8)
 ### Dashboard:
 - https://trello.com/b/TmpJ7COL/master-thesis
-
-#### TODO Research:
- - . . .
